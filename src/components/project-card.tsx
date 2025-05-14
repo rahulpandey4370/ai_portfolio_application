@@ -110,7 +110,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       </CardHeader>
       <CardContent className="p-6 flex-grow">
         <CardTitle className="text-xl font-semibold mb-2 text-primary">{project.title}</CardTitle>
-        <CardDescription className="text-sm text-muted-foreground mb-3 h-12 overflow-hidden">
+        <CardDescription className="text-sm text-muted-foreground mb-3 h-20 overflow-y-auto">
            {project.description}
         </CardDescription>
         
