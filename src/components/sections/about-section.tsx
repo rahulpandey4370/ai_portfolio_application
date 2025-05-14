@@ -58,7 +58,7 @@ export default function AboutSection() {
                 <Badge 
                   key={skill} 
                   variant="secondary" 
-                  className="text-sm px-3 py-1 bg-accent/10 text-accent-foreground hover:bg-accent/20 dark:bg-accent/40 dark:hover:bg-accent/50"
+                  className="text-sm px-3 py-1 bg-accent/10 text-accent-foreground hover:bg-accent/20 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/80"
                 >
                   {skill}
                 </Badge>
