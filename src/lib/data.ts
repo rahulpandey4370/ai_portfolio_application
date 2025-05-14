@@ -1,3 +1,4 @@
+
 export interface EducationEntry {
   institution: string;
   degree: string;
@@ -47,76 +48,98 @@ export interface PortfolioData {
 
 export const portfolioData: PortfolioData = {
   name: "Rahul Ranjan Pandey",
-  role: "Software Engineer & AI Enthusiast",
+  role: "AI/ML & Data Engineer",
   contact: {
-    email: "rahul.pandey@example.com",
-    linkedin: "https://linkedin.com/in/rahulrpandey", // Full links
-    github: "https://github.com/rahulrpandey",
+    email: "rahul.ranjan.pandey.4370@gmail.com",
+    linkedin: "https://linkedin.com/in/rahul-ranjan-pandey-0a13b0116/",
+    github: "https://github.com/rahulrpandey", // Kept existing as not provided in resume
   },
   hero: {
     title: "Hi, I'm Rahul Ranjan Pandey",
-    subtitle: "A creative Software Engineer transforming ideas into reality with code and AI.",
+    subtitle: "AI/ML & Data Engineer passionate about developing advanced machine learning models and AI solutions.",
     cta: "Explore My Work",
   },
-  summary: "Innovative Software Engineer with experience in building scalable web applications using modern technologies. Passionate about AI and creating impactful user experiences.",
+  summary: "Driven AI/ML & Data Engineer with over 2 years of experience, primarily focused on developing and deploying advanced machine learning models, AI solutions, and generative AI applications on cloud platforms such as AWS and GCP. Skilled in designing scalable data pipelines and robust ETL processes using Hadoop, Hive, Databricks and Spark to support high-impact AI initiatives, ensuring data security, compliance, and tailored, client-specific innovations.",
   education: [
     {
-      institution: "Indian Institute of Technology (IIT), Delhi",
-      degree: "Bachelor of Technology in Computer Science",
+      institution: "SJB Institute of Technology, Bengaluru, India",
+      degree: "Bachelor of Engineering in Information Science and Engineering",
       period: "2018 - 2022",
-      details: "Relevant coursework: Data Structures, Algorithms, Artificial Intelligence, Machine Learning, Web Development."
+      details: "CGPA: 9.1"
+    },
+    {
+      institution: "Mount Assisi School, India",
+      degree: "Higher Secondary (ISE Class XII) & Secondary (ICSE Class X)",
+      period: "Secondary: 2015-2016, Higher Secondary: 2017-2018",
+      details: "ISE (Class XII) Percentage: 74. ICSE (Class X) Percentage: 87.1"
     }
   ],
   experience: [
     {
-      company: "Google",
-      role: "Software Engineer",
-      period: "2022 - Present",
-      description: "Developed and maintained key features for large-scale user-facing products, focusing on performance and user experience. Collaborated with cross-functional teams in an Agile environment to deliver high-quality software solutions. Worked extensively with React, Next.js, TypeScript, and various Google Cloud services.",
-      techStack: ["React", "Next.js", "TypeScript", "Google Cloud", "Kubernetes"]
+      company: "Y MEDIA LABS PVT. LTD. (Now Code and Theory)",
+      role: "Software Engineer [AI/ML]",
+      period: "August 2022 - Present",
+      description: "Developed tailored AI/ML models to address unique client requirements, delivering data-driven solutions that boosted operational efficiency by 35%. Integrated targeted data analytics and streamlined ETL processes using Hadoop, Hive, and Spark, while leveraging AWS and GCP cloud services to optimize data ingestion and enhance model performance, resulting in a 25% reduction in processing time. Collaborated with cross-functional teams to integrate advanced analytics and machine learning insights into robust production systems. SOP Award recipient for exceptional contributions and earned multiple KUDOS for outstanding teamwork and proactive problem-solving.",
+      techStack: ["AI/ML", "Python", "ETL", "Hadoop", "Hive", "Spark", "AWS", "GCP", "Data Analytics"]
     },
     {
-      company: "Amazon",
-      role: "Software Development Intern",
-      period: "Summer 2021",
-      description: "Contributed to the development of internal AWS tools, improving developer productivity and deployment efficiency. Gained hands-on experience in cloud services, microservices architecture, and backend development using Java and Python.",
-      techStack: ["Java", "Python", "AWS", "Microservices"]
+      company: "Automation Anywhere",
+      role: "Software Engineer Intern",
+      period: "March 2022 - August 2022",
+      description: "Assisted in cloud migration and application testing to support efficient backend processes.",
+      techStack: ["Cloud Migration", "Application Testing"]
     }
   ],
-  skills: ["TypeScript", "JavaScript", "React", "Next.js", "Node.js", "Python", "Java", "Firebase", "Google Cloud Platform", "AWS", "Genkit", "AI/ML", "Tailwind CSS", "Docker", "Kubernetes"],
+  skills: [
+    "Python", "SQL", "ETL Pipeline Development", "Data Warehousing", "Hadoop", "Spark", "Hive",
+    "Machine Learning", "Deep Learning", "GenAI", "LLMs", "AWS", "Databricks", "GCP", "PyTorch",
+    "LlamaIndex", "Langchain", "Data Analytics", "Pandas", "Numpy", "Matplotlib", "AI Tools", "Git", "Agile",
+    "Leadership", "Communication", "Teamwork", "Critical Thinking", "Creativity", "Adaptability"
+  ],
   projects: [
     {
       id: "project1",
-      title: "AI Portfolio Website",
-      description: "My personal portfolio, showcasing skills and projects with an AI chatbot.",
-      longDescription: "A personal portfolio website built with Next.js, Tailwind CSS, and integrated with Gemini AI for a chatbot and project summarization. It features a responsive design, theme toggling, and dynamically displays resume information, experience, and projects. The AI chatbot, acting as myself, answers questions based on my resume and LinkedIn data.",
-      techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Genkit", "Gemini API"],
+      title: "Agentic GenAI-Powered Knowledge Base & Evaluation Framework",
+      description: "Smart RAG-based knowledge assistant with specialized agentic modules and a GenAI evaluation framework.",
+      longDescription: "Built a smart RAG-based knowledge assistant that ingests data from Workfront, HubSpot, APIs, and web scraping, followed by ETL and ingestion into a vector DB with TF-IDF boosted retrieval. Developed specialized agentic modules (search agent, relevance agent, processing agent) to improve context retrieval, response accuracy, and overall efficiency of the RAG system. Designed and implemented a GenAI evaluation framework, combining BLEU, ROUGE, and LLM-as-a-judge methods to assess model outputs on correctness, relevance, instruction-following, and QA performance.",
+      techStack: ["GenAI", "RAG", "Vector DB", "TF-IDF", "ETL", "Python", "APIs", "Web Scraping", "BLEU", "ROUGE", "LLM-as-a-judge"],
       imageUrl: "https://placehold.co/600x400.png",
-      dataAiHint: "portfolio website",
-      liveLink: "#",
-      repoLink: "https://github.com/rahulrpandey/ai-portfolio"
+      dataAiHint: "knowledge base",
+      // liveLink: "#", // Add if available
+      // repoLink: "#" // Add if available
     },
     {
       id: "project2",
-      title: "Intelligent Document Analyzer",
-      description: "An AI-powered tool to extract insights and summarize large documents.",
-      longDescription: "An AI-powered application designed to process and analyze large textual documents. Users can upload documents, and the system uses Natural Language Processing (NLP) techniques via Gemini API to provide summaries, extract key entities, identify sentiment, and answer questions about the document content. Built with Python (Flask/FastAPI backend) and a React frontend.",
-      techStack: ["Python", "Flask", "React", "NLP", "Gemini API", "Docker"],
+      title: "AI-Driven Universal Web Scraper for User Insights",
+      description: "AI-powered web scraper with an ETL pipeline for scalable data warehousing and user insights.",
+      longDescription: "Developed an AI-powered web scraper to extract structured data. Built an ETL pipeline using Databricks (Spark), Hadoop, and Hive for scalable data warehousing and analysis, reducing processing time by 25%. Leveraged PySpark notebooks in Databricks for seamless data transformation and monitoring. Delivered user segmentation and sentiment analysis for actionable insights.",
+      techStack: ["AI", "Web Scraping", "ETL", "Databricks", "Spark", "Hadoop", "Hive", "PySpark", "User Segmentation", "Sentiment Analysis"],
       imageUrl: "https://placehold.co/600x400.png",
-      dataAiHint: "document analysis",
-      liveLink: "#",
-      repoLink: "#"
+      dataAiHint: "web scraper",
+      // liveLink: "#",
+      // repoLink: "#"
     },
     {
       id: "project3",
-      title: "Real-time Collaborative Whiteboard",
-      description: "A web application for real-time collaborative drawing and brainstorming.",
-      longDescription: "A web-based collaborative whiteboard application that allows multiple users to draw, write, and share ideas in real-time. Features include various drawing tools, text input, shape creation, and synchronized sessions using WebSockets and Firebase Realtime Database for low-latency updates. The interface is built with React and Konva.js for canvas interactions.",
-      techStack: ["React", "Node.js", "WebSockets", "Firebase", "Konva.js"],
+      title: "Event Recommendation System with High-Accuracy Personalization",
+      description: "Recommendation engine for event suggestions achieving 95% accuracy through advanced ML techniques.",
+      longDescription: "Built a recommendation engine for event suggestions based on user interests, achieving an accuracy rate of 95%. Experimented with similarity metrics, clustering, and collaborative filtering techniques, achieving a 15% improvement in personalization accuracy.",
+      techStack: ["Recommendation Systems", "Machine Learning", "Python", "Collaborative Filtering", "Clustering", "Similarity Metrics"],
       imageUrl: "https://placehold.co/600x400.png",
-      dataAiHint: "whiteboard collaboration",
-      liveLink: "#",
-      repoLink: "#"
+      dataAiHint: "recommendation engine",
+      // liveLink: "#",
+      // repoLink: "#"
+    },
+    {
+      id: "project4",
+      title: "Customized LLM for Client-Specific Summarization and Recommendations",
+      description: "Custom LLM solution for summarization, email generation, and recommendations from conversation data.",
+      longDescription: "Developed a custom LLM solution to provide client-specific summaries, email generation, and resource recommendations based on conversation data. Implemented data cleaning, feature engineering, and context-limiting using LlamaIndex.",
+      techStack: ["LLM", "LlamaIndex", "NLP", "Python", "Data Cleaning", "Feature Engineering"],
+      imageUrl: "https://placehold.co/600x400.png",
+      dataAiHint: "custom llm",
+      // liveLink: "#",
+      // repoLink: "#"
     }
   ]
 };
