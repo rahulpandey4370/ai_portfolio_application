@@ -22,22 +22,23 @@ interface SkillItemProps {
 const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
   const IconComponent = getIconComponent(skill.iconName);
 
+  // Adjusted sizes for compactness
   const sizeClasses = {
-    high: 'p-4 md:p-5 min-h-[120px] md:min-h-[140px]',
-    medium: 'p-3 md:p-4 min-h-[100px] md:min-h-[120px]',
-    low: 'p-2 md:p-3 min-h-[80px] md:min-h-[100px]',
+    high: 'p-3 min-h-[80px]',
+    medium: 'p-2.5 min-h-[70px]',
+    low: 'p-2 min-h-[60px]',
   };
 
   const iconOrImageSizeClasses = {
-    high: 'h-8 w-8 md:h-10 md:w-10 mb-2',
-    medium: 'h-7 w-7 md:h-8 md:w-8 mb-1.5',
-    low: 'h-6 w-6 md:h-7 md:w-7 mb-1',
+    high: 'h-7 w-7 mb-1.5', // Approx 28px
+    medium: 'h-6 w-6 mb-1', // Approx 24px
+    low: 'h-5 w-5 mb-1',    // Approx 20px
   };
   
   const textSizeClasses = {
-    high: 'text-md md:text-lg font-semibold',
-    medium: 'text-sm md:text-md font-medium',
-    low: 'text-xs md:text-sm font-normal',
+    high: 'text-sm font-semibold',
+    medium: 'text-xs font-semibold', // Differentiated from low by weight
+    low: 'text-xs font-normal',
   };
 
   return (
@@ -53,8 +54,8 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
         <Image
           src={skill.imageUrl}
           alt={`${skill.name} logo`}
-          width={skill.level === 'high' ? 40 : skill.level === 'medium' ? 32 : 28} // Corresponds to h-10, h-8, h-7 approx.
-          height={skill.level === 'high' ? 40 : skill.level === 'medium' ? 32 : 28}
+          width={skill.level === 'high' ? 28 : skill.level === 'medium' ? 24 : 20} 
+          height={skill.level === 'high' ? 28 : skill.level === 'medium' ? 24 : 20}
           className={cn('object-contain', iconOrImageSizeClasses[skill.level])}
         />
       ) : IconComponent ? (
@@ -86,7 +87,8 @@ export default function SkillsSection() {
             <h3 className="text-2xl font-semibold tracking-tight mb-6 text-center sm:text-left text-secondary-foreground dark:text-primary-foreground/90 border-b-2 border-primary/50 pb-2">
               {category}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+            {/* Adjusted grid gaps */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
               {skillsInCategory.map((skill, index) => (
                 <SkillItem key={skill.name} skill={skill} index={index} />
               ))}
