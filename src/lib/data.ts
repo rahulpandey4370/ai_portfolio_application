@@ -240,15 +240,15 @@ export const portfolioData: PortfolioData = {
   youtubeVideos: [
     {
       id: "video1",
-      title: "Attention is All You Need | The Transformer Model",
+      title: "Google Firebase Studio In 23 Minutes",
       embedId: "Rd6F5wHIysM",
-      description: "A visual and intuitive explanation of the Transformer model and the 'Attention' mechanism, foundational to many LLMs. By A.I. Sisyphus.",
+      description: "A visual and intuitive explanation of the Google Firebase Studio. Also demonstrates it's features, pro and cons and we can use to develop applications easily.",
     },
     {
       id: "video2",
-      title: "The Illustrated Word2vec (Kid Friendly!)",
+      title: "N8N Full Tutorial: Building AI Agents in 2025 for Beginners!",
       embedId: "ZbIVOy_GPyQ",
-      description: "A clear explanation of Word2vec, a popular technique for learning word embeddings. By A.I. Sisyphus.",
+      description: "A clear explanation of video for begineers to get started with Agentic AI Workflows using N8N.",
     },
   ],
 };
