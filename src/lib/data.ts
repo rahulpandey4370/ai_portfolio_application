@@ -198,7 +198,7 @@ export const portfolioData: PortfolioData = {
       description: "AI-powered system for identifying anomalies in real-time data streams using advanced ML models on GCP.",
       longDescription: "Developed a scalable anomaly detection engine for processing high-velocity streaming data. Leveraged Kafka for data ingestion, Spark Streaming for real-time processing, and a suite of unsupervised machine learning models (e.g., Isolation Forest, Autoencoders) deployed on Google Cloud Platform. The system provides alerts and dashboards for monitoring critical operational metrics, improving system reliability by 20%.",
       techStack: ["GCP", "Kafka", "Spark Streaming", "Python", "Machine Learning", "Anomaly Detection", "Docker", "BigQuery"],
-      imageUrl: "/realtime",
+      imageUrl: "/realtime.png",
       dataAiHint: "data stream",
     },
     {
