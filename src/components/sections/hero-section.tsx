@@ -32,15 +32,35 @@ export default function HeroSection() {
     <section id="hero" className="relative w-full min-h-[calc(100vh-3.5rem)] flex items-center justify-center overflow-hidden py-16 md:py-0">
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0 -z-10">
-        {/* Base gradient - can be static or a very slow animation */}
+        {/* Base gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-primary/10 dark:from-background dark:via-background/80 dark:to-accent/10" />
         
-        {/* New dynamic gradient overlay */}
-        <div className="absolute inset-0 animate-hero-gradient-shift opacity-60 dark:opacity-40"></div> {/* Increased opacity */}
+        {/* Dynamic gradient overlay */}
+        <div className="absolute inset-0 animate-hero-gradient-shift opacity-60 dark:opacity-40"></div>
 
-        {/* Existing subtle animated circles, slightly adjusted for effect */}
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-primary/5 dark:bg-primary/3 rounded-full filter blur-3xl animate-pulse opacity-30 dark:opacity-20 animation-delay-1000"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/5 dark:bg-accent/3 rounded-full filter blur-3xl animate-pulse animation-delay-3000 opacity-30 dark:opacity-20"></div>
+        {/* Subtle animated shapes */}
+        <div 
+          className="absolute top-1/4 left-1/4 w-48 h-48 bg-primary/5 dark:bg-primary/3 rounded-full filter blur-3xl animate-pulse opacity-30 dark:opacity-20"
+          style={{ animationDelay: '1s' }}
+        ></div>
+        <div 
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-accent/5 dark:bg-accent/3 rounded-full filter blur-3xl animate-pulse opacity-30 dark:opacity-20"
+          style={{ animationDelay: '3s' }}
+        ></div>
+        
+        {/* Additional animated shapes for more engagement */}
+        <div
+          className="absolute top-1/3 right-1/5 w-24 h-24 bg-accent/10 dark:bg-accent/5 rounded-full filter blur-2xl animate-pulse opacity-25 dark:opacity-15"
+          style={{ animationDelay: '0.5s', animationDuration: '1.5s' }}
+        ></div>
+        <div
+          className="absolute bottom-1/5 left-1/10 w-72 h-48 bg-primary/10 dark:bg-primary/5 rounded-2xl filter blur-3xl animate-pulse opacity-20 dark:opacity-10"
+          style={{ animationDelay: '2s', animationDuration: '4s' }}
+        ></div>
+         <div
+          className="absolute top-1/2 left-1/2 w-32 h-32 bg-primary/15 dark:bg-primary/8 rounded-full filter blur-2xl animate-pulse opacity-20 dark:opacity-10 transform -translate-x-1/2 -translate-y-1/2"
+          style={{ animationDelay: '1.5s', animationDuration: '3s' }}
+        ></div>
       </div>
 
       <div className="container px-4 md:px-6 grid md:grid-cols-5 gap-x-8 gap-y-12 items-center">
@@ -66,7 +86,7 @@ export default function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/30 transition-shadow w-full sm:w-auto">
-              <a href="/resume.pdf" download="Rahul_Ranjan_Pandey_Resume.pdf"> {/* Placeholder link */}
+              <a href="/resume.pdf" download="Rahul_Ranjan_Pandey_Resume.pdf"> 
                 Download CV
                 <Download className="ml-2 h-5 w-5" />
               </a>
