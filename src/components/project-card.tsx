@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from 'next/image';
@@ -19,7 +20,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [summary, setSummary] = useState<string | null>(null);
   const [isLoadingSummary, setIsLoadingSummary] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [_isPending, startTransition] = useTransition();
   const [isHovering, setIsHovering] = useState(false);
 
   const fetchSummary = async () => {
@@ -75,7 +76,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           <h4 className="text-xs font-semibold uppercase text-muted-foreground mb-1">Tech Stack:</h4>
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech) => (
-              <Badge key={tech} variant="secondary" className="text-xs bg-accent/10 text-accent-foreground hover:bg-accent/20">
+              <Badge 
+                key={tech} 
+                variant="secondary" 
+                className="text-xs bg-accent/10 text-accent-foreground hover:bg-accent/20 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/80"
+              >
                 {tech}
               </Badge>
             ))}
