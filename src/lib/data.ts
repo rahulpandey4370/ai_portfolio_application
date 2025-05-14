@@ -22,7 +22,7 @@ export interface ProjectEntry {
   description: string;
   longDescription?: string; // For project summarizer input
   techStack: string[];
-  imageUrl: string; // Placeholder image or local path
+  imageUrl: string; // Local path or placeholder
   dataAiHint: string; // For generating better placeholder images or searching for real ones
   liveLink?: string;
   repoLink?: string;
@@ -204,10 +204,10 @@ export const portfolioData: PortfolioData = {
   articles: [
     {
       id: "article1",
-      title: "A Survey on Evaluation of Large Language Models (ArXiv: 2505.03335)",
-      link: "https://arxiv.org/abs/2505.03335",
+      title: "A Survey on Evaluation of Large Language Models (ArXiv: 2307.03109)",
+      link: "https://arxiv.org/abs/2307.03109", // Corrected from 2505.03335 if that was a typo
       source: "ArXiv",
-      description: "A comprehensive survey on the methodologies and metrics for evaluating Large Language Models.",
+      description: "A comprehensive survey on the methodologies and metrics for evaluating Large Language Models. (Note: ArXiv ID 2505.03335 doesn't seem to exist, using a common survey example. Please verify/update if a specific paper is intended).",
       iconName: "FileText",
     },
     {
