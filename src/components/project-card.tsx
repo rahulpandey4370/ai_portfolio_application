@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button';
 import { ExternalLink, Github, Sparkles, Loader2 } from 'lucide-react';
 import type { ProjectEntry } from '@/lib/data';
 import { summarizeProject, type SummarizeProjectInput } from '@/ai/flows/project-summarizer';
-import { generateProjectImage, type GenerateProjectImageInput } from '@/ai/flows/project-image-generator';
 
 interface ProjectCardProps {
   project: ProjectEntry;
@@ -21,11 +20,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [summary, setSummary] = useState<string | null>(null);
   const [isLoadingSummary, setIsLoadingSummary] = useState(false);
   
-  const [displayedImageUrl, setDisplayedImageUrl] = useState<string>(project.imageUrl);
-  const [isImageLoading, setIsImageLoading] = useState(!!project.imageGenerationPrompt); // Only true if we intend to generate
-
   const [_isPendingSummary, startSummaryTransition] = useTransition();
-  const [_isPendingImage, startImageTransition] = useTransition();
 
   const fetchSummary = async () => {
     if (!project.longDescription || summary || isLoadingSummary) return;
@@ -47,41 +42,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     startSummaryTransition(() => {
       fetchSummary();
     });
-  }, [project.longDescription, project.title]); // Added project.title to dependencies for safety, though longDescription should be key
+  }, [project.longDescription, project.title]);
 
-
-  useEffect(() => {
-    const fetchImage = async () => {
-      if (!project.imageGenerationPrompt) {
-        setIsImageLoading(false); // No prompt, use project.imageUrl, stop loading
-        return;
-      }
-      
-      // If we reach here, it means project.imageGenerationPrompt exists.
-      setIsImageLoading(true); 
-      try {
-        const input: GenerateProjectImageInput = { prompt: project.imageGenerationPrompt };
-        const result = await generateProjectImage(input);
-        if (result.imageDataUri) {
-          setDisplayedImageUrl(result.imageDataUri);
-        } else {
-           // Fallback to initial placeholder if generation returns nothing
-           setDisplayedImageUrl(project.imageUrl);
-        }
-      } catch (error) {
-        console.error("Failed to fetch project image for:", project.title, error);
-        setDisplayedImageUrl(project.imageUrl); // Fallback to initial placeholder
-      } finally {
-        setIsImageLoading(false);
-      }
-    };
-
-    if (project.imageGenerationPrompt) { // Only run if a prompt is provided
-        startImageTransition(() => {
-          fetchImage();
-        });
-    }
-  }, [project.imageGenerationPrompt, project.imageUrl, project.title]);
 
   return (
     <Card 
@@ -90,21 +52,15 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     >
       <CardHeader className="p-0">
         <div className="relative aspect-video w-full bg-muted">
-          {isImageLoading ? (
-            <div className="absolute inset-0 flex items-center justify-center bg-secondary/30">
-              <Loader2 className="h-12 w-12 text-primary animate-spin" />
-            </div>
-          ) : (
-            <Image
-              src={displayedImageUrl}
-              alt={project.title}
-              layout="fill"
-              objectFit="cover"
-              className="transition-opacity duration-500"
-              data-ai-hint={project.dataAiHint}
-              unoptimized={displayedImageUrl.startsWith('data:') || displayedImageUrl.startsWith('blob:')}
-            />
-          )}
+          <Image
+            src={project.imageUrl}
+            alt={project.title}
+            layout="fill"
+            objectFit="cover"
+            className="transition-opacity duration-500"
+            data-ai-hint={project.dataAiHint}
+            unoptimized={project.imageUrl.startsWith('data:') || project.imageUrl.startsWith('blob:')}
+          />
         </div>
       </CardHeader>
       <CardContent className="p-6 flex-grow">

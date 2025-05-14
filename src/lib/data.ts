@@ -22,8 +22,7 @@ export interface ProjectEntry {
   description: string;
   longDescription?: string; // For project summarizer input
   techStack: string[];
-  imageUrl: string; // Local path or placeholder. If it's a placeholder AND imageGenerationPrompt is present, dynamic generation will be attempted.
-  imageGenerationPrompt?: string; // Prompt for dynamic image generation
+  imageUrl: string; // Local path or placeholder.
   dataAiHint: string; // For generating better placeholder images or searching for real ones
   liveLink?: string;
   repoLink?: string;
@@ -164,7 +163,6 @@ export const portfolioData: PortfolioData = {
       longDescription: "Built a smart RAG-based knowledge assistant that ingests data from Workfront, HubSpot, APIs, and web scraping, followed by ETL and ingestion into a vector DB with TF-IDF boosted retrieval. Developed specialized agentic modules (search agent, relevance agent, processing agent) to improve context retrieval, response accuracy, and overall efficiency of the RAG system. Designed and implemented a GenAI evaluation framework, combining BLEU, ROUGE, and LLM-as-a-judge methods to assess model outputs on correctness, relevance, instruction-following, and QA performance.",
       techStack: ["GenAI", "RAG", "Vector DB", "TF-IDF", "ETL", "Python", "APIs", "Web Scraping", "BLEU", "ROUGE", "LLM-as-a-judge"],
       imageUrl: "https://placehold.co/600x400.png",
-      imageGenerationPrompt: "Futuristic interface displaying a knowledge graph with glowing nodes and connections, symbolizing an AI-powered knowledge base and evaluation system.",
       dataAiHint: "AI knowledge",
     },
     {
@@ -173,7 +171,7 @@ export const portfolioData: PortfolioData = {
       description: "AI-powered web scraper with an ETL pipeline for scalable data warehousing and user insights.",
       longDescription: "Developed an AI-powered web scraper to extract structured data. Built an ETL pipeline using Databricks (Spark), Hadoop, and Hive for scalable data warehousing and analysis, reducing processing time by 25%. Leveraged PySpark notebooks in Databricks for seamless data transformation and monitoring. Delivered user segmentation and sentiment analysis for actionable insights.",
       techStack: ["AI", "Web Scraping", "ETL", "Databricks", "Spark", "Hadoop", "Hive", "PySpark", "User Segmentation", "Sentiment Analysis"],
-      imageUrl: "/scraper.png", // This project uses a local image, so no imageGenerationPrompt
+      imageUrl: "/scraper.png", 
       dataAiHint: "data extraction",
     },
     {
@@ -183,7 +181,6 @@ export const portfolioData: PortfolioData = {
       longDescription: "Built a recommendation engine for event suggestions based on user interests, achieving an accuracy rate of 95%. Experimented with similarity metrics, clustering, and collaborative filtering techniques, achieving a 15% improvement in personalization accuracy.",
       techStack: ["Recommendation Systems", "Machine Learning", "Python", "Collaborative Filtering", "Clustering", "Similarity Metrics"],
       imageUrl: "https://placehold.co/600x400.png",
-      imageGenerationPrompt: "Dynamic visualization of a network of users and events, with personalized recommendation paths highlighted, suggesting high accuracy.",
       dataAiHint: "event algorithm",
     },
     {
@@ -193,7 +190,6 @@ export const portfolioData: PortfolioData = {
       longDescription: "Developed a custom LLM solution to provide client-specific summaries, email generation, and resource recommendations based on conversation data. Implemented data cleaning, feature engineering, and context-limiting using LlamaIndex.",
       techStack: ["LLM", "LlamaIndex", "NLP", "Python", "Data Cleaning", "Feature Engineering"],
       imageUrl: "https://placehold.co/600x400.png",
-      imageGenerationPrompt: "Abstract representation of an LLM processing conversation data and outputting concise summaries and recommendations, with data flowing through a neural network.",
       dataAiHint: "AI text",
     },
     {
@@ -203,7 +199,6 @@ export const portfolioData: PortfolioData = {
       longDescription: "Developed a scalable anomaly detection engine for processing high-velocity streaming data. Leveraged Kafka for data ingestion, Spark Streaming for real-time processing, and a suite of unsupervised machine learning models (e.g., Isolation Forest, Autoencoders) deployed on Google Cloud Platform. The system provides alerts and dashboards for monitoring critical operational metrics, improving system reliability by 20%.",
       techStack: ["GCP", "Kafka", "Spark Streaming", "Python", "Machine Learning", "Anomaly Detection", "Docker", "BigQuery"],
       imageUrl: "https://placehold.co/600x400.png",
-      imageGenerationPrompt: "Futuristic dashboard displaying real-time data streams with highlighted anomalies, set against a Google Cloud Platform interface background.",
       dataAiHint: "data stream",
     },
     {
@@ -213,7 +208,6 @@ export const portfolioData: PortfolioData = {
       longDescription: "Created an intelligent tool that leverages Large Language Models (LLMs) to parse Python code and automatically generate docstrings, README sections, and usage examples. Integrated with Git for seamless workflow integration. Utilized fine-tuning techniques on a base LLM to improve code understanding and documentation quality, reducing documentation time for developers by 40%.",
       techStack: ["GenAI", "LLM", "Python", "NLP", "Fine-tuning", "Git", "Streamlit", "Docker"],
       imageUrl: "https://placehold.co/600x400.png",
-      imageGenerationPrompt: "Abstract visual of AI generating code documentation: glowing lines of code morphing into well-structured documentation blocks, with subtle Git icons.",
       dataAiHint: "AI code",
     }
   ],
