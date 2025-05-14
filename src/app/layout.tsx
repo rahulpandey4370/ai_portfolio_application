@@ -38,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-screen">
+          <div className="flex flex-col min-h-screen overflow-x-hidden"> {/* Added overflow-x-hidden here */}
             <Header />
             <main className="flex-grow">{children}</main>
             <Footer />

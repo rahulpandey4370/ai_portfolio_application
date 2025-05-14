@@ -36,7 +36,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-primary/10 dark:from-background dark:via-background/80 dark:to-accent/10" />
         
         {/* New dynamic gradient overlay */}
-        <div className="absolute inset-0 animate-hero-gradient-shift opacity-50 dark:opacity-30"></div>
+        <div className="absolute inset-0 animate-hero-gradient-shift opacity-60 dark:opacity-40"></div> {/* Increased opacity */}
 
         {/* Existing subtle animated circles, slightly adjusted for effect */}
         <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-primary/5 dark:bg-primary/3 rounded-full filter blur-3xl animate-pulse opacity-30 dark:opacity-20 animation-delay-1000"></div>
