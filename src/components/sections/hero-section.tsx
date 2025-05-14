@@ -55,7 +55,7 @@ export default function HeroSection() {
         ></div>
       </div>
 
-      <div className="container px-4 md:px-6 grid md:grid-cols-5 gap-x-12 gap-y-12 items-start">
+      <div className="w-full px-4 sm:px-6 lg:px-8 grid md:grid-cols-5 gap-x-12 gap-y-12 items-start">
         {/* Left Column: Title, Subtitle, Image/Details, CTAs */}
         <div className="md:col-span-3 flex flex-col text-center md:text-left">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl mb-4">
@@ -74,7 +74,7 @@ export default function HeroSection() {
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.4}s` }}
           >
             <Image
-              src="/rahul_pic.png"
+              src="/Rahul_Portrait.JPG"
               alt={portfolioData.name}
               width={280}
               height={280}
@@ -82,7 +82,7 @@ export default function HeroSection() {
               data-ai-hint="professional portrait"
               priority
             />
-            <div className="text-center">
+            <div className="text-center"> {/* This ensures text below image is also centered */}
               <h3 className="text-2xl font-semibold text-primary">{portfolioData.name}</h3>
               <p className="text-md text-muted-foreground mt-1">{portfolioData.role}</p>
 
@@ -114,7 +114,7 @@ export default function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/30 transition-shadow w-full sm:w-auto">
-              <a href="/Rahul_Ranjan_Pandey_Resume_AI_ML_Data.pdf" download="Rahul_Ranjan_Pandey_Resume_AI_Portfolio.pdf"> {/* Updated href and download to match assumed full PDF name */}
+              <a href="/Rahul_Ranjan_Pandey_Resume_AI_Portfolio.pdf" download="Rahul_Ranjan_Pandey_Resume_AI_Portfolio.pdf">
                 Download CV
                 <Download className="ml-2 h-5 w-5" />
               </a>
@@ -133,4 +133,3 @@ export default function HeroSection() {
     </section>
   );
 }
-

@@ -1,7 +1,7 @@
 
 import { portfolioData } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { YoutubeIcon, PlayCircle } from 'lucide-react'; // Using Youtube from lucide
+import { YoutubeIcon, PlayCircle } from 'lucide-react';
 
 export default function YouTubeVideosSection() {
   if (!portfolioData.youtubeVideos || portfolioData.youtubeVideos.length === 0) {
@@ -9,18 +9,18 @@ export default function YouTubeVideosSection() {
   }
 
   return (
-    <section id="videos" className="bg-background">
-      <div className="container px-4 md:px-6">
-        <div className="text-center mb-12 animate-fadeInUp">
+    <section id="videos" className="bg-background w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
+      <div className="container mx-auto"> {/* Added container here to constrain inner content */}
+        <div className="text-center mb-12 animate-fadeInUp max-w-2xl mx-auto"> {/* Kept max-width for text block */}
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary flex items-center justify-center gap-3">
             <YoutubeIcon className="h-8 w-8" />
             Recommended Videos
           </h2>
-          <p className="mt-4 text-lg text-foreground/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-foreground/80">
             Helpful and insightful YouTube videos on AI, Machine Learning, and related topics.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-6xl mx-auto"> {/* Added max-width and mx-auto to the grid */}
           {portfolioData.youtubeVideos.map((video, index) => (
             <Card 
               key={video.id} 
@@ -57,5 +57,3 @@ export default function YouTubeVideosSection() {
     </section>
   );
 }
-
-    

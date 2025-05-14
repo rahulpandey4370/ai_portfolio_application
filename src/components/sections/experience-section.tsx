@@ -1,19 +1,20 @@
+
 import { Briefcase, CalendarDays } from "lucide-react";
 import { portfolioData, type ExperienceEntry } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="bg-secondary/50 dark:bg-secondary/20">
-      <div className="container px-4 md:px-6">
-        <div className="text-center mb-12 animate-fadeInUp">
+    <section id="experience" className="bg-secondary/50 dark:bg-secondary/20 w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
+      <div className="container mx-auto"> {/* Added container here to constrain inner content */}
+        <div className="text-center mb-12 animate-fadeInUp max-w-2xl mx-auto"> {/* Kept max-width for text block */}
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">My Journey</h2>
-          <p className="mt-4 text-lg text-foreground/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-foreground/80">
             A timeline of my professional experience and growth.
           </p>
         </div>
 
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative max-w-3xl mx-auto"> {/* Kept max-width for timeline */}
           {/* Vertical line */}
           <div className="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-border -translate-x-1/2" aria-hidden="true"></div>
 

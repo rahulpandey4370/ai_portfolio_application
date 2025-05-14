@@ -1,8 +1,8 @@
+
 "use client";
 
 import Image from 'next/image';
 import { portfolioData, type SkillEntry } from '@/lib/data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import * as LucideIcons from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -21,7 +21,6 @@ interface SkillItemProps {
 const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
   const IconComponent = getIconComponent(skill.iconName);
 
-  // Adjusted sizes for compactness
   const sizeClasses = {
     high: 'p-3 min-h-[80px]',
     medium: 'p-2.5 min-h-[70px]',
@@ -29,14 +28,14 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
   };
 
   const iconOrImageSizeClasses = {
-    high: 'h-7 w-7 mb-1.5', // Approx 28px
-    medium: 'h-6 w-6 mb-1', // Approx 24px
-    low: 'h-5 w-5 mb-1',    // Approx 20px
+    high: 'h-7 w-7 mb-1.5',
+    medium: 'h-6 w-6 mb-1',
+    low: 'h-5 w-5 mb-1',
   };
   
   const textSizeClasses = {
     high: 'text-sm font-semibold',
-    medium: 'text-xs font-semibold', // Differentiated from low by weight
+    medium: 'text-xs font-semibold',
     low: 'text-xs font-normal',
   };
 
@@ -69,10 +68,10 @@ export default function SkillsSection() {
   const skillCategories = ['Technical', 'Machine Learning & AI', 'Soft Skills'] as const;
 
   return (
-    <section id="skills" className="container px-4 md:px-6">
-      <div className="text-center mb-12 animate-fadeInUp">
+    <section id="skills" className="w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
+      <div className="text-center mb-12 animate-fadeInUp max-w-2xl mx-auto"> {/* Kept max-width for text block */}
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">Skills Arsenal</h2>
-        <p className="mt-4 text-lg text-foreground/80 max-w-2xl mx-auto">
+        <p className="mt-4 text-lg text-foreground/80">
           A showcase of my diverse technical and soft skills, honed through experience and continuous learning.
         </p>
       </div>
@@ -82,11 +81,10 @@ export default function SkillsSection() {
         if (skillsInCategory.length === 0) return null;
 
         return (
-          <div key={category} className="mb-12 animate-fadeInUp max-w-5xl mx-auto" style={{animationDelay: `${catIndex * 0.2}s`}}>
+          <div key={category} className="mb-12 animate-fadeInUp max-w-5xl mx-auto" style={{animationDelay: `${catIndex * 0.2}s`}}> {/* Kept max-width for category block */}
             <h3 className="text-2xl font-semibold tracking-tight mb-6 text-center sm:text-left text-secondary-foreground dark:text-primary-foreground/90 border-b-2 border-primary/50 pb-2">
               {category}
             </h3>
-            {/* Adjusted grid gaps */}
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
               {skillsInCategory.map((skill, index) => (
                 <SkillItem key={skill.name} skill={skill} index={index} />

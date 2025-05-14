@@ -1,20 +1,20 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { GraduationCap, Lightbulb, UserCircle } from "lucide-react";
+import { GraduationCap, UserCircle } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="container px-4 md:px-6">
+    <section id="about" className="w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
       <div className="space-y-12">
-        <div className="text-center animate-fadeInUp">
+        <div className="text-center animate-fadeInUp max-w-2xl mx-auto"> {/* Kept max-width and mx-auto for text block */}
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">About Me</h2>
-          <p className="mt-4 text-lg text-foreground/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-foreground/80">
             {portfolioData.summary}
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto"> {/* Added max-w-5xl and mx-auto */}
+        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto"> {/* Kept max-width and mx-auto for card grid */}
           <Card className="animate-fadeInUp" style={{animationDelay: "0.2s"}}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
