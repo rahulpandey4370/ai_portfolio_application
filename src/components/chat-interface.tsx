@@ -106,7 +106,7 @@ export default function ChatInterface() {
             >
               {msg.sender === 'bot' && (
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="https://placehold.co/40x40.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
+                  <AvatarImage src="/bot.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
                   <AvatarFallback>AI</AvatarFallback>
                 </Avatar>
               )}

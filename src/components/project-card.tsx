@@ -3,16 +3,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect, useTransition, Suspense } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ExternalLink, Github, Sparkles, Loader2 } from 'lucide-react';
 import type { ProjectEntry } from '@/lib/data';
 import { summarizeProject, type SummarizeProjectInput } from '@/ai/flows/project-summarizer';
 import { generateProjectImage, type GenerateProjectImageInput } from '@/ai/flows/project-image-generator';
-import { Skeleton } from '@/components/ui/skeleton';
 
 interface ProjectCardProps {
   project: ProjectEntry;
@@ -22,10 +20,9 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const [summary, setSummary] = useState<string | null>(null);
   const [isLoadingSummary, setIsLoadingSummary] = useState(false);
-  const [isSummaryHovering, setIsSummaryHovering] = useState(false);
   
   const [displayedImageUrl, setDisplayedImageUrl] = useState<string>(project.imageUrl);
-  const [isImageLoading, setIsImageLoading] = useState(true); // Start loading image on mount
+  const [isImageLoading, setIsImageLoading] = useState(!!project.imageGenerationPrompt); // Only true if we intend to generate
 
   const [_isPendingSummary, startSummaryTransition] = useTransition();
   const [_isPendingImage, startImageTransition] = useTransition();
@@ -39,60 +36,62 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       const result = await summarizeProject(input);
       setSummary(result.summary);
     } catch (error) {
-      console.error("Failed to fetch summary:", error);
-      setSummary("Could not load summary.");
+      console.error("Failed to fetch summary for project:", project.title, error);
+      setSummary("Click to learn more about this exciting project!"); // Fallback teaser
     } finally {
       setIsLoadingSummary(false);
     }
   };
 
   useEffect(() => {
-    if (isSummaryHovering && !summary && !isLoadingSummary) {
-      startSummaryTransition(() => {
-        fetchSummary();
-      });
-    }
-  }, [isSummaryHovering, summary, isLoadingSummary, project.longDescription, startSummaryTransition]);
+    startSummaryTransition(() => {
+      fetchSummary();
+    });
+  }, [project.longDescription, project.title]); // Added project.title to dependencies for safety, though longDescription should be key
 
 
   useEffect(() => {
     const fetchImage = async () => {
       if (!project.imageGenerationPrompt) {
-        setIsImageLoading(false); // No prompt, stop loading
+        setIsImageLoading(false); // No prompt, use project.imageUrl, stop loading
         return;
       }
       
-      setIsImageLoading(true);
+      // If we reach here, it means project.imageGenerationPrompt exists.
+      setIsImageLoading(true); 
       try {
         const input: GenerateProjectImageInput = { prompt: project.imageGenerationPrompt };
         const result = await generateProjectImage(input);
-        if (result.imageDataUri && result.imageDataUri !== displayedImageUrl) {
+        if (result.imageDataUri) {
           setDisplayedImageUrl(result.imageDataUri);
+        } else {
+           // Fallback to initial placeholder if generation returns nothing
+           setDisplayedImageUrl(project.imageUrl);
         }
       } catch (error) {
-        console.error("Failed to fetch project image:", error);
-        // Keep placeholder if generation fails
+        console.error("Failed to fetch project image for:", project.title, error);
+        setDisplayedImageUrl(project.imageUrl); // Fallback to initial placeholder
       } finally {
         setIsImageLoading(false);
       }
     };
 
-    startImageTransition(() => {
-      fetchImage();
-    });
-  }, [project.imageGenerationPrompt, project.imageUrl]); // project.imageUrl removed as it's static
+    if (project.imageGenerationPrompt) { // Only run if a prompt is provided
+        startImageTransition(() => {
+          fetchImage();
+        });
+    }
+  }, [project.imageGenerationPrompt, project.imageUrl, project.title]);
 
   return (
     <Card 
       className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col animate-fadeInUp h-full"
       style={{ animationDelay: `${index * 0.15}s` }}
-      onMouseEnter={() => setIsSummaryHovering(true)}
-      onMouseLeave={() => setIsSummaryHovering(false)}
     >
       <CardHeader className="p-0">
         <div className="relative aspect-video w-full bg-muted">
           {isImageLoading ? (
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center bg-secondary/30">
               <Loader2 className="h-12 w-12 text-primary animate-spin" />
             </div>
           ) : (
@@ -102,8 +101,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               layout="fill"
               objectFit="cover"
               className="transition-opacity duration-500"
-              data-ai-hint={project.dataAiHint} // Keep hint for placeholder or if generation fails
-              unoptimized={displayedImageUrl.startsWith('data:')} // Important for data URIs
+              data-ai-hint={project.dataAiHint}
+              unoptimized={displayedImageUrl.startsWith('data:') || displayedImageUrl.startsWith('blob:')}
             />
           )}
         </div>
@@ -130,26 +129,22 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
         
         {project.longDescription && (
-          <TooltipProvider delayDuration={300}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div className="text-xs text-muted-foreground mt-2 p-2 border border-dashed rounded-md h-16 overflow-y-auto bg-secondary/30">
-                  {isLoadingSummary ? (
-                    <div className="flex items-center justify-center h-full">
-                       <Loader2 className="h-4 w-4 animate-spin mr-2" /> Loading summary...
-                    </div>
-                  ) : summary ? (
-                     <><Sparkles className="h-3 w-3 inline mr-1 text-accent" />{summary}</>
-                  ) : (
-                    <span className="italic">Hover card to see AI summary.</span>
-                  )}
-                </div>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" className="max-w-xs bg-background border-border text-foreground shadow-lg">
-                <p>{summary || "AI-generated project summary will appear here upon hover."}</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <div 
+              className="text-xs text-muted-foreground mt-2 p-3 border border-dashed rounded-md min-h-[4rem] bg-secondary/30 flex items-center text-left"
+          >
+            {isLoadingSummary ? (
+              <div className="flex items-center w-full">
+                  <Loader2 className="h-4 w-4 animate-spin mr-2 text-primary" /> <span>Unveiling insights...</span>
+              </div>
+            ) : summary ? (
+              <div className="flex items-start w-full">
+                  <Sparkles className="h-4 w-4 mr-2 mt-0.5 text-accent flex-shrink-0" />
+                  <span>{summary}</span>
+              </div>
+            ) : (
+              <span className="italic w-full">Loading project details...</span>
+            )}
+          </div>
         )}
 
       </CardContent>

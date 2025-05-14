@@ -20,7 +20,7 @@ const GenerateProjectImageInputSchema = z.object({
 export type GenerateProjectImageInput = z.infer<typeof GenerateProjectImageInputSchema>;
 
 const GenerateProjectImageOutputSchema = z.object({
-  imageDataUri: z.string().describe('The generated image as a data URI.'),
+  imageDataUri: z.string().describe('The generated image as a data URI, or a placeholder URL if generation fails.'),
 });
 
 export type GenerateProjectImageOutput = z.infer<typeof GenerateProjectImageOutputSchema>;
@@ -42,6 +42,12 @@ const generateProjectImageFlow = ai.defineFlow(
         prompt: input.prompt,
         config: {
           responseModalities: ['TEXT', 'IMAGE'], // Must provide both
+           safetySettings: [ // Added safety settings to be less restrictive for creative content
+            { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_ONLY_HIGH' },
+            { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_ONLY_HIGH' },
+            { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+            { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_ONLY_HIGH' },
+          ],
         },
       });
 
@@ -49,14 +55,11 @@ const generateProjectImageFlow = ai.defineFlow(
         return {imageDataUri: media.url};
       } else {
         console.error('Image generation did not return a media URL for prompt:', input.prompt);
-        // Fallback to a default placeholder or throw a more specific error
-        // For now, returning a placeholder data URI to prevent crashes, but ideally, this should be handled better.
-        return {imageDataUri: 'https://placehold.co/600x400.png?text=Error+Generating'};
+        return {imageDataUri: `https://placehold.co/600x400.png?text=ImageGenFail`};
       }
     } catch (error) {
         console.error('Error generating image for prompt:', input.prompt, error);
-        // Fallback for errors during generation
-        return {imageDataUri: 'https://placehold.co/600x400.png?text=Generation+Failed'};
+        return {imageDataUri: `https://placehold.co/600x400.png?text=GenError`};
     }
   }
 );
