@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail } from 'lucide-react';
+import { portfolioData } from '@/lib/data';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,13 +12,13 @@ export default function Footer() {
           </p>
         </div>
         <div className="flex items-center gap-4">
-          <a href="https://github.com/rahulrpandey" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <a href={portfolioData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <Github className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
           </a>
-          <a href="https://linkedin.com/in/rahulrpandey" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <a href={portfolioData.contact.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <Linkedin className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
           </a>
-          <a href="mailto:rahul.pandey@example.com" aria-label="Email">
+          <a href={`mailto:${portfolioData.contact.email}`} aria-label="Email">
             <Mail className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
           </a>
         </div>

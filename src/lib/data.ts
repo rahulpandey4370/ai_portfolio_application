@@ -61,8 +61,8 @@ export const portfolioData: PortfolioData = {
   role: "AI/ML & Data Engineer",
   contact: {
     email: "rahul.ranjan.pandey.4370@gmail.com",
-    linkedin: "https://linkedin.com/in/rahul-ranjan-pandey-0a13b0116/",
-    github: "https://github.com/rahulrpandey",
+    linkedin: "https://www.linkedin.com/in/rahul-ranjan-pandey-0a13b0116/",
+    github: "https://github.com/rahul-pandey-ct", // Updated GitHub link
   },
   hero: {
     title: "Hi, I'm Rahul Ranjan Pandey",
@@ -184,5 +184,3 @@ export const portfolioData: PortfolioData = {
     }
   ]
 };
-
-    
