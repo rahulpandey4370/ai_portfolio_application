@@ -14,7 +14,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2"> {/* Simplified grid for Bio and Education */}
+        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto"> {/* Added max-w-5xl and mx-auto */}
           <Card className="animate-fadeInUp" style={{animationDelay: "0.2s"}}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -50,5 +50,3 @@ export default function AboutSection() {
     </section>
   );
 }
-
-    
