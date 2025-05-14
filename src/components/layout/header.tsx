@@ -7,7 +7,8 @@ import { portfolioData } from '@/lib/data';
 export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center">
+      {/* Changed div below: removed 'container' and 'max-w-screen-2xl', added 'w-full' and 'px-4 sm:px-6 lg:px-8' for padding */}
+      <div className="flex h-14 w-full items-center px-4 sm:px-6 lg:px-8">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <Code2 className="h-6 w-6 text-primary" />
           <span className="font-bold sm:inline-block">
@@ -35,5 +36,3 @@ export default function Header() {
     </header>
   );
 }
-
-    
