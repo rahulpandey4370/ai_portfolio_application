@@ -110,7 +110,7 @@ export default function ChatInterface() {
             >
               {msg.sender === 'bot' && (
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/rahul-avatar.png" alt="Bot Avatar" data-ai-hint="robot face" />
+                  <AvatarImage src="/rahul-avatar.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
                   <AvatarFallback>AI</AvatarFallback>
                 </Avatar>
               )}
@@ -134,7 +134,7 @@ export default function ChatInterface() {
           {isLoading && (
             <div className="flex items-end gap-2 justify-start animate-fadeIn">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="/rahul-avatar.png" alt="Bot Avatar" data-ai-hint="robot face" />
+                <AvatarImage src="/rahul-avatar.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
                 <AvatarFallback>AI</AvatarFallback>
               </Avatar>
               <div className="max-w-[70%] rounded-lg px-4 py-2 text-sm shadow bg-secondary text-secondary-foreground">
