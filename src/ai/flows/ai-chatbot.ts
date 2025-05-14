@@ -169,7 +169,7 @@ Based on my LinkedIn summary:
 {{/if}}
 
 Consider the user's query and the provided data to formulate your response. If the query is specific, focus on the relevant information. If general, provide a concise overview.
-Response:\`,
+Response:\``,
 });
 
 const aiChatbotFlow = ai.defineFlow(
