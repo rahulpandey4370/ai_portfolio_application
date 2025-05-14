@@ -1,4 +1,6 @@
 
+import type { LucideIcon } from 'lucide-react'; // Import type for icon names
+
 export interface EducationEntry {
   institution: string;
   degree: string;
@@ -22,9 +24,16 @@ export interface ProjectEntry {
   techStack: string[];
   imageUrl: string; // Placeholder image
   dataAiHint: string;
-  imageGenerationPrompt: string; // Prompt for dynamic image generation
+  // imageGenerationPrompt: string; // Removed as per previous request
   liveLink?: string;
   repoLink?: string;
+}
+
+export interface SkillEntry {
+  name: string;
+  category: 'Technical' | 'Machine Learning & AI' | 'Soft Skills';
+  level: 'high' | 'medium' | 'low'; // Represents experience/prominence
+  iconName?: keyof typeof import('lucide-react'); // Store the string name of the icon from lucide-react
 }
 
 export interface PortfolioData {
@@ -43,7 +52,7 @@ export interface PortfolioData {
   summary: string;
   education: EducationEntry[];
   experience: ExperienceEntry[];
-  skills: string[];
+  skills: SkillEntry[]; // Updated to use SkillEntry
   projects: ProjectEntry[];
 }
 
@@ -92,10 +101,41 @@ export const portfolioData: PortfolioData = {
     }
   ],
   skills: [
-    "Python", "SQL", "ETL Pipeline Development", "Data Warehousing", "Hadoop", "Spark", "Hive",
-    "Machine Learning", "Deep Learning", "GenAI", "LLMs", "AWS", "Databricks", "GCP", "PyTorch",
-    "LlamaIndex", "Langchain", "Data Analytics", "Pandas", "Numpy", "Matplotlib", "AI Tools", "Git", "Agile",
-    "Leadership", "Communication", "Teamwork", "Critical Thinking", "Creativity", "Adaptability"
+    // Technical Skills
+    { name: "Python", category: "Technical", level: "high", iconName: "Code2" },
+    { name: "SQL", category: "Technical", level: "high", iconName: "Database" },
+    { name: "ETL Pipeline", category: "Technical", level: "high", iconName: "Workflow" },
+    { name: "Data Warehousing", category: "Technical", level: "medium", iconName: "Archive" },
+    { name: "Hadoop", category: "Technical", level: "medium", iconName: "ServerCog" },
+    { name: "Spark", category: "Technical", level: "medium", iconName: "Sparkles" }, // Using the actual Sparkles icon
+    { name: "Hive", category: "Technical", level: "medium", iconName: "DatabaseZap" },
+    { name: "Git", category: "Technical", level: "high", iconName: "GitFork" },
+    { name: "Agile", category: "Technical", level: "medium", iconName: "IterationCcw" },
+
+    // Machine Learning & AI
+    { name: "Machine Learning", category: "Machine Learning & AI", level: "high", iconName: "BrainCircuit" },
+    { name: "Deep Learning", category: "Machine Learning & AI", level: "high", iconName: "Layers3" },
+    { name: "GenAI", category: "Machine Learning & AI", level: "high", iconName: "Bot" },
+    { name: "LLMs", category: "Machine Learning & AI", level: "high", iconName: "MessageSquareText" },
+    { name: "AWS", category: "Machine Learning & AI", level: "medium", iconName: "Cloud" },
+    { name: "Databricks", category: "Machine Learning & AI", level: "medium", iconName: "Boxes" },
+    { name: "GCP", category: "Machine Learning & AI", level: "medium", iconName: "CloudCog" },
+    { name: "PyTorch", category: "Machine Learning & AI", level: "medium", iconName: "Network" },
+    { name: "LlamaIndex", category: "Machine Learning & AI", level: "medium", iconName: "LibraryBig" },
+    { name: "Langchain", category: "Machine Learning & AI", level: "medium", iconName: "Link2" },
+    { name: "Data Analytics", category: "Machine Learning & AI", level: "high", iconName: "BarChart3" },
+    { name: "Pandas", category: "Machine Learning & AI", level: "medium", iconName: "Table2" },
+    { name: "Numpy", category: "Machine Learning & AI", level: "medium", iconName: "SigmaSquare" },
+    { name: "Matplotlib", category: "Machine Learning & AI", level: "medium", iconName: "AreaChart" },
+    { name: "AI Tools", category: "Machine Learning & AI", level: "medium", iconName: "WandSparkles" },
+  
+    // Soft Skills
+    { name: "Leadership", category: "Soft Skills", level: "high", iconName: "Users" },
+    { name: "Communication", category: "Soft Skills", level: "high", iconName: "MessageCircle" },
+    { name: "Teamwork", category: "Soft Skills", level: "high", iconName: "UsersRound" },
+    { name: "Critical Thinking", category: "Soft Skills", level: "medium", iconName: "Brain" },
+    { name: "Creativity", category: "Soft Skills", level: "medium", iconName: "Lightbulb" },
+    { name: "Adaptability", category: "Soft Skills", level: "medium", iconName: "RefreshCcwDot" },
   ],
   projects: [
     {
@@ -106,7 +146,6 @@ export const portfolioData: PortfolioData = {
       techStack: ["GenAI", "RAG", "Vector DB", "TF-IDF", "ETL", "Python", "APIs", "Web Scraping", "BLEU", "ROUGE", "LLM-as-a-judge"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "knowledge base",
-      imageGenerationPrompt: "Futuristic AI knowledge base with glowing data networks and holographic charts, abstract technology.",
       // liveLink: "#", 
       // repoLink: "#" 
     },
@@ -118,7 +157,6 @@ export const portfolioData: PortfolioData = {
       techStack: ["AI", "Web Scraping", "ETL", "Databricks", "Spark", "Hadoop", "Hive", "PySpark", "User Segmentation", "Sentiment Analysis"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "web scraper",
-      imageGenerationPrompt: "Dynamic data streams from websites flowing into a central data hub, with user insight charts, web scraping analytics.",
       // liveLink: "#",
       // repoLink: "#"
     },
@@ -130,7 +168,6 @@ export const portfolioData: PortfolioData = {
       techStack: ["Recommendation Systems", "Machine Learning", "Python", "Collaborative Filtering", "Clustering", "Similarity Metrics"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "recommendation engine",
-      imageGenerationPrompt: "Personalized event recommendation feed on a mobile device, 95 percent accuracy, modern social entertainment theme.",
       // liveLink: "#",
       // repoLink: "#"
     },
@@ -142,9 +179,10 @@ export const portfolioData: PortfolioData = {
       techStack: ["LLM", "LlamaIndex", "NLP", "Python", "Data Cleaning", "Feature Engineering"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "custom llm",
-      imageGenerationPrompt: "Abstract LLM processing conversations into summaries and emails, professional AI communication interface.",
       // liveLink: "#",
       // repoLink: "#"
     }
   ]
 };
+
+    

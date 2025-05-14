@@ -1,5 +1,5 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { GraduationCap, Lightbulb, UserCircle } from "lucide-react";
 import { portfolioData } from "@/lib/data";
 
@@ -14,7 +14,7 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2"> {/* Simplified grid for Bio and Education */}
           <Card className="animate-fadeInUp" style={{animationDelay: "0.2s"}}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -45,28 +45,10 @@ export default function AboutSection() {
               ))}
             </CardContent>
           </Card>
-
-          <Card className="animate-fadeInUp md:col-span-2 lg:col-span-1" style={{animationDelay: "0.6s"}}>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Lightbulb className="h-6 w-6 text-accent" />
-                Skills
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="flex flex-wrap gap-2">
-              {portfolioData.skills.map((skill) => (
-                <Badge 
-                  key={skill} 
-                  variant="secondary" 
-                  className="text-sm px-3 py-1 bg-accent/10 text-accent-foreground hover:bg-accent/20 dark:bg-accent dark:text-accent-foreground dark:hover:bg-accent/80"
-                >
-                  {skill}
-                </Badge>
-              ))}
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>
   );
 }
+
+    

@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { ThemeToggleButton } from '@/components/theme-toggle-button';
 import { Code2 } from 'lucide-react';
@@ -14,6 +15,7 @@ export default function Header() {
         </Link>
         <nav className="flex flex-1 items-center space-x-4 sm:space-x-6 text-sm font-medium">
           <Link href="/#about" className="text-foreground/60 transition-colors hover:text-foreground/80">About</Link>
+          <Link href="/#skills" className="text-foreground/60 transition-colors hover:text-foreground/80">Skills</Link> {/* Add Skills link */}
           <Link href="/#experience" className="text-foreground/60 transition-colors hover:text-foreground/80">Experience</Link>
           <Link href="/#projects" className="text-foreground/60 transition-colors hover:text-foreground/80">Projects</Link>
           <Link href="/#chatbot" className="text-foreground/60 transition-colors hover:text-foreground/80">AI Chat</Link>
@@ -25,3 +27,5 @@ export default function Header() {
     </header>
   );
 }
+
+    
