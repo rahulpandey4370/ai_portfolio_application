@@ -11,7 +11,7 @@ export default function YouTubeVideosSection() {
   return (
     <section id="videos" className="bg-background w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
       <div className="container mx-auto"> {/* Added container here to constrain inner content */}
-        <div className="text-center mb-12 animate-fadeInUp max-w-2xl mx-auto"> {/* Kept max-width for text block */}
+        <div className="text-center mb-12 animate-fadeInUp max-w-3xl mx-auto"> {/* Kept max-width for text block, increased from 2xl to 3xl */}
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary flex items-center justify-center gap-3">
             <YoutubeIcon className="h-8 w-8" />
             Recommended Videos
@@ -20,7 +20,7 @@ export default function YouTubeVideosSection() {
             Helpful and insightful YouTube videos on AI, Machine Learning, and related topics.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-6xl mx-auto"> {/* Added max-width and mx-auto to the grid */}
+        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto"> {/* Added max-width and mx-auto to the grid, increased from 6xl to 7xl */}
           {portfolioData.youtubeVideos.map((video, index) => (
             <Card 
               key={video.id} 

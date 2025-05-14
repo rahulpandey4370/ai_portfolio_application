@@ -7,14 +7,14 @@ export default function AboutSection() {
   return (
     <section id="about" className="w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
       <div className="space-y-12">
-        <div className="text-center animate-fadeInUp max-w-2xl mx-auto"> {/* Kept max-width and mx-auto for text block */}
+        <div className="text-center animate-fadeInUp max-w-3xl mx-auto"> {/* Kept max-width and mx-auto for text block, increased from 2xl to 3xl */}
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">About Me</h2>
           <p className="mt-4 text-lg text-foreground/80">
             {portfolioData.summary}
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto"> {/* Kept max-width and mx-auto for card grid */}
+        <div className="grid gap-8 md:grid-cols-2 max-w-7xl mx-auto"> {/* Kept max-width and mx-auto for card grid, increased from 5xl to 7xl */}
           <Card className="animate-fadeInUp" style={{animationDelay: "0.2s"}}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">

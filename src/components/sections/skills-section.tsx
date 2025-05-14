@@ -28,7 +28,7 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
   };
 
   const iconOrImageSizeClasses = {
-    high: 'h-7 w-7 mb-1.5',
+    high: 'h-7 w-7 mb-1.5', // Python logo uses width/height props directly, this is for icons
     medium: 'h-6 w-6 mb-1',
     low: 'h-5 w-5 mb-1',
   };
@@ -69,7 +69,7 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
-      <div className="text-center mb-12 animate-fadeInUp max-w-2xl mx-auto"> {/* Kept max-width for text block */}
+      <div className="text-center mb-12 animate-fadeInUp max-w-3xl mx-auto"> {/* Kept max-width for text block, increased from 2xl to 3xl */}
         <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">Skills Arsenal</h2>
         <p className="mt-4 text-lg text-foreground/80">
           A showcase of my diverse technical and soft skills, honed through experience and continuous learning.
@@ -81,7 +81,7 @@ export default function SkillsSection() {
         if (skillsInCategory.length === 0) return null;
 
         return (
-          <div key={category} className="mb-12 animate-fadeInUp max-w-5xl mx-auto" style={{animationDelay: `${catIndex * 0.2}s`}}> {/* Kept max-width for category block */}
+          <div key={category} className="mb-12 animate-fadeInUp max-w-7xl mx-auto" style={{animationDelay: `${catIndex * 0.2}s`}}> {/* Kept max-width for category block, increased from 5xl to 7xl */}
             <h3 className="text-2xl font-semibold tracking-tight mb-6 text-center sm:text-left text-secondary-foreground dark:text-primary-foreground/90 border-b-2 border-primary/50 pb-2">
               {category}
             </h3>
