@@ -55,7 +55,7 @@ export default function HeroSection() {
         ></div>
       </div>
 
-      <div className="container px-4 md:px-6 grid md:grid-cols-5 gap-x-12 gap-y-12 items-start"> {/* Increased gap-x */}
+      <div className="container px-4 md:px-6 grid md:grid-cols-5 gap-x-12 gap-y-12 items-start">
         {/* Left Column: Title, Subtitle, Image/Details, CTAs */}
         <div className="md:col-span-3 flex flex-col text-center md:text-left">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl mb-4">
@@ -105,7 +105,7 @@ export default function HeroSection() {
           
           <div 
             className="mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 animate-fadeInUp opacity-0"
-            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.6}s` }} // Adjusted delay
+            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.6}s` }}
           >
             <Button asChild size="lg" className="shadow-lg hover:shadow-primary/30 transition-shadow w-full sm:w-auto">
               <Link href="/#projects">
@@ -124,8 +124,8 @@ export default function HeroSection() {
 
         {/* Right Column: Chat Interface */}
         <div 
-            className="md:col-span-2 w-full animate-fadeInUp opacity-0"
-            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.5}s` }} // Adjusted delay for chat
+            className="md:col-span-2 w-full animate-fadeInUp opacity-0 md:mt-16"
+            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.5}s` }} 
           >
             <ChatInterface />
         </div>
@@ -133,3 +133,4 @@ export default function HeroSection() {
     </section>
   );
 }
+
