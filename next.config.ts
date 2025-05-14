@@ -1,3 +1,4 @@
+
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
@@ -15,6 +16,12 @@ const nextConfig: NextConfig = {
         hostname: 'placehold.co',
         port: '',
         pathname: '/**',
+      },
+      { // Added for Python logo
+        protocol: 'https',
+        hostname: 'www.python.org',
+        port: '',
+        pathname: '/static/community_logos/**',
       },
     ],
   },

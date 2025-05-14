@@ -1,6 +1,7 @@
 
 "use client";
 
+import Image from 'next/image';
 import { portfolioData, type SkillEntry } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import * as LucideIcons from 'lucide-react';
@@ -27,7 +28,7 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
     low: 'p-2 md:p-3 min-h-[80px] md:min-h-[100px]',
   };
 
-  const iconSizeClasses = {
+  const iconOrImageSizeClasses = {
     high: 'h-8 w-8 md:h-10 md:w-10 mb-2',
     medium: 'h-7 w-7 md:h-8 md:w-8 mb-1.5',
     low: 'h-6 w-6 md:h-7 md:w-7 mb-1',
@@ -48,10 +49,18 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
       )}
       style={{ animationDelay: `${index * 0.05}s` }}
     >
-      {IconComponent && (
-        <IconComponent className={cn('text-primary', iconSizeClasses[skill.level])} strokeWidth={1.5} />
-      )}
-      <span className={cn(textSizeClasses[skill.level], 'leading-tight')}>{skill.name}</span>
+      {skill.imageUrl ? (
+        <Image
+          src={skill.imageUrl}
+          alt={`${skill.name} logo`}
+          width={skill.level === 'high' ? 40 : skill.level === 'medium' ? 32 : 28} // Corresponds to h-10, h-8, h-7 approx.
+          height={skill.level === 'high' ? 40 : skill.level === 'medium' ? 32 : 28}
+          className={cn('object-contain', iconOrImageSizeClasses[skill.level])}
+        />
+      ) : IconComponent ? (
+        <IconComponent className={cn('text-primary', iconOrImageSizeClasses[skill.level])} strokeWidth={1.5} />
+      ) : null}
+      <span className={cn(textSizeClasses[skill.level], 'leading-tight mt-1')}>{skill.name}</span>
     </div>
   );
 };
@@ -88,5 +97,3 @@ export default function SkillsSection() {
     </section>
   );
 }
-
-    

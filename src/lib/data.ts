@@ -24,7 +24,6 @@ export interface ProjectEntry {
   techStack: string[];
   imageUrl: string; // Placeholder image
   dataAiHint: string;
-  // imageGenerationPrompt: string; // Removed as per previous request
   liveLink?: string;
   repoLink?: string;
 }
@@ -34,6 +33,7 @@ export interface SkillEntry {
   category: 'Technical' | 'Machine Learning & AI' | 'Soft Skills';
   level: 'high' | 'medium' | 'low'; // Represents experience/prominence
   iconName?: keyof typeof import('lucide-react'); // Store the string name of the icon from lucide-react
+  imageUrl?: string; // Optional URL for a custom logo image
 }
 
 export interface PortfolioData {
@@ -102,12 +102,13 @@ export const portfolioData: PortfolioData = {
   ],
   skills: [
     // Technical Skills
-    { name: "Python", category: "Technical", level: "high", iconName: "Code2" },
+    // IMPORTANT: Replace the imageUrl for Python with an actual logo URL.
+    { name: "Python", category: "Technical", level: "high", imageUrl: "https://www.python.org/static/community_logos/python-logo-master-v3-095.png", iconName: "Code2" }, // Placeholder iconName for fallback
     { name: "SQL", category: "Technical", level: "high", iconName: "Database" },
     { name: "ETL Pipeline", category: "Technical", level: "high", iconName: "Workflow" },
     { name: "Data Warehousing", category: "Technical", level: "medium", iconName: "Archive" },
     { name: "Hadoop", category: "Technical", level: "medium", iconName: "ServerCog" },
-    { name: "Spark", category: "Technical", level: "medium", iconName: "Sparkles" }, // Using the actual Sparkles icon
+    { name: "Spark", category: "Technical", level: "medium", iconName: "Sparkles" },
     { name: "Hive", category: "Technical", level: "medium", iconName: "DatabaseZap" },
     { name: "Git", category: "Technical", level: "high", iconName: "GitFork" },
     { name: "Agile", category: "Technical", level: "medium", iconName: "IterationCcw" },
@@ -184,5 +185,3 @@ export const portfolioData: PortfolioData = {
     }
   ]
 };
-
-    
