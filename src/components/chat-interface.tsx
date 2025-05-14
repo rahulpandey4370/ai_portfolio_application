@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useRef, useEffect, useTransition } from 'react';
@@ -6,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Send, User, MessageSquare, Loader2 } from 'lucide-react';
-import { aiChatbot, type AIChatbotInput } from '@/ai/flows/ai-chatbot';
+import { aiChatbot, type AIChatbotInput, type ChatMessage as BackendChatMessage } from '@/ai/flows/ai-chatbot';
 import { cn } from '@/lib/utils';
 
 interface Message {
@@ -16,11 +17,13 @@ interface Message {
   avatar?: string;
 }
 
+const MAX_HISTORY_LENGTH = 5;
+
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isPending, startTransition] = useTransition();
+  const [_isPending, startTransition] = useTransition(); // Renamed to avoid conflict with potential future use
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,13 +52,25 @@ export default function ChatInterface() {
       text: input,
       sender: 'user',
     };
-    setMessages((prev) => [...prev, userMessage]);
+    
+    // Update messages state immediately with user's message
+    const updatedMessages = [...messages, userMessage];
+    setMessages(updatedMessages);
     setInput('');
     setIsLoading(true);
 
+    // Prepare chat history: last MAX_HISTORY_LENGTH messages, mapping to BackendChatMessage format
+    // This history is what *led up to* the current userMessage
+    const historyForBackend: BackendChatMessage[] = updatedMessages
+      .slice(-MAX_HISTORY_LENGTH -1, -1) // Get up to MAX_HISTORY_LENGTH previous messages
+      .map(msg => ({ sender: msg.sender, text: msg.text }));
+
     startTransition(async () => {
       try {
-        const chatbotInput: AIChatbotInput = { query: userMessage.text };
+        const chatbotInput: AIChatbotInput = { 
+          query: userMessage.text, // The current user query
+          chatHistory: historyForBackend.length > 0 ? historyForBackend : undefined,
+        };
         const response = await aiChatbot(chatbotInput);
         const botMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -147,3 +162,5 @@ export default function ChatInterface() {
     </div>
   );
 }
+
+    

@@ -2,7 +2,8 @@
 'use server';
 
 /**
- * @fileOverview An AI chatbot that answers questions based on Rahul's resume and LinkedIn data.
+ * @fileOverview An AI chatbot that answers questions based on Rahul's resume and LinkedIn data,
+ * considering chat history for contextual responses.
  *
  * - aiChatbot - A function that handles the chatbot interaction.
  * - AIChatbotInput - The input type for the aiChatbot function.
@@ -12,8 +13,15 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
+const ChatMessageSchema = z.object({
+  sender: z.enum(['user', 'bot']),
+  text: z.string(),
+});
+export type ChatMessage = z.infer<typeof ChatMessageSchema>;
+
 const AIChatbotInputSchema = z.object({
   query: z.string().describe('The user query about Rahul.'),
+  chatHistory: z.array(ChatMessageSchema).optional().describe('The last 5 messages in the conversation history, including the current user query if it was already added to history on the client.'),
 });
 export type AIChatbotInput = z.infer<typeof AIChatbotInputSchema>;
 
@@ -117,24 +125,28 @@ Education
 
 const shouldIncludeResumeInfo = ai.defineTool({
   name: 'shouldIncludeResumeInfo',
-  description: "Decides whether to include resume information in the response. Call this tool if the user's query asks for general information, experience, education, skills, or projects. The LLM should call this tool to determine if the context of the query is general enough to warrant pulling details directly from the resume data.",
+  description: "Decides whether to include resume information in the response. Call this tool if the user's current query, in the context of the conversation history, asks for general information, experience, education, skills, or projects that are typically found in a resume. The LLM should call this tool to determine if the context of the query warrants pulling details directly from the resume data.",
   inputSchema: z.object({
-    query: z.string().describe('The user query.'),
+    query: z.string().describe('The current user query.'),
+    chatHistory: z.array(ChatMessageSchema).optional().describe('The preceding conversation history for context.'),
   }),
   outputSchema: z.boolean().describe('Whether to include resume information.'),
 },
 async (input) => {
     const lowerQuery = input.query.toLowerCase();
     const keywords = ['experience', 'education', 'skills', 'project', 'summary', 'profile', 'technical', 'work', 'qualification', 'background', 'tell me about you', 'who are you', 'resume'];
-    return keywords.some(keyword => lowerQuery.includes(keyword)) || lowerQuery.length < 15;
+    // If there's no chat history or the query is short and general, it's more likely to need full resume context.
+    const isGeneralContext = !input.chatHistory || input.chatHistory.length === 0 || lowerQuery.length < 20;
+    return keywords.some(keyword => lowerQuery.includes(keyword)) || isGeneralContext;
   }
 );
 
 const shouldIncludeLinkedInInfo = ai.defineTool({
   name: 'shouldIncludeLinkedInInfo',
-  description: "Decides whether to include LinkedIn information in the response. Call this tool if the user's query specifically mentions LinkedIn, professional profile, social media presence related to career, or specific company names like 'Code and Theory', 'Y Media Labs', or 'Automation Anywhere' in a professional context. This helps determine if the summarized LinkedIn data is relevant.",
+  description: "Decides whether to include LinkedIn information in the response. Call this tool if the user's current query, in the context of the conversation history, specifically mentions LinkedIn, professional profile, social media presence related to career, or specific company names like 'Code and Theory', 'Y Media Labs', or 'Automation Anywhere' in a professional context. This helps determine if the summarized LinkedIn data is relevant.",
   inputSchema: z.object({
-    query: z.string().describe('The user query.'),
+    query: z.string().describe('The current user query.'),
+    chatHistory: z.array(ChatMessageSchema).optional().describe('The preceding conversation history for context.'),
   }),
   outputSchema: z.boolean().describe('Whether to include LinkedIn information.'),
 },
@@ -148,19 +160,31 @@ async (input) => {
 const aiChatbotPrompt = ai.definePrompt({
   name: 'aiChatbotPrompt',
   tools: [shouldIncludeResumeInfo, shouldIncludeLinkedInInfo],
-  input: {schema: z.object({ query: z.string(), resumeData: z.string(), linkedInData: z.string() })},
+  input: {schema: z.object({
+    query: z.string(),
+    resumeData: z.string(),
+    linkedInData: z.string(),
+    chatHistory: z.array(ChatMessageSchema).optional(),
+  })},
   output: {schema: AIChatbotOutputSchema},
   prompt: `You are Rahul Ranjan Pandey, an AI chatbot. Provide information about yourself based on your resume and LinkedIn data.
-Respond in a conversational and friendly tone, as if you are Rahul.
+Respond directly to the user's query. Avoid starting every message with generic greetings like "Hello" or "Hey there" unless it's the very beginning of a new conversation. Maintain a conversational and friendly tone, as if you are Rahul.
 You should only ever respond as if you are Rahul Ranjan Pandey, and never acknowledge that you are an AI unless explicitly asked about your nature as a chatbot.
 
-User Query: {{{query}}}
+{{#if chatHistory}}
+Previous conversation:
+{{#each chatHistory}}
+{{this.sender}}: {{this.text}}
+{{/each}}
+{{/if}}
+
+Current User Query: {{{query}}}
 
 To help you answer, here is some information. You have access to two tools:
-1. 'shouldIncludeResumeInfo': Use this tool if the user's query seems to ask for general information, experience, education, skills, or projects from the resume.
-2. 'shouldIncludeLinkedInInfo': Use this tool if the user's query mentions LinkedIn, professional profile, or specific company names that might be better answered with a LinkedIn summary.
+1. 'shouldIncludeResumeInfo': Use this tool if the user's current query, considering the chat history, seems to ask for general information, experience, education, skills, or projects from the resume.
+2. 'shouldIncludeLinkedInInfo': Use this tool if the user's current query, considering the chat history, mentions LinkedIn, professional profile, or specific company names that might be better answered with a LinkedIn summary.
 
-Based on the user's query and the output of these tools (if you choose to use them), formulate your response.
+Based on the current user's query, the previous conversation (if any), and the output of these tools (if you choose to use them), formulate your response.
 
 Resume Data (available if 'shouldIncludeResumeInfo' tool indicates it's relevant):
 {{{resumeData}}}
@@ -168,7 +192,7 @@ Resume Data (available if 'shouldIncludeResumeInfo' tool indicates it's relevant
 LinkedIn Data (Summary, available if 'shouldIncludeLinkedInInfo' tool indicates it's relevant):
 {{{linkedInData}}}
 
-Formulate your response based on the user's query. If the tools suggest including resume or LinkedIn information, incorporate the relevant parts from the data provided above. If the query is specific, focus on that. If it's general, provide a concise overview using the information your tools indicate is relevant.
+Formulate your response based on the user's query and chat history. If the tools suggest including resume or LinkedIn information, incorporate the relevant parts from the data provided above. If the query is specific, focus on that. If it's general, provide a concise overview using the information your tools indicate is relevant.
 Response:`,
 });
 
@@ -183,13 +207,15 @@ const aiChatbotFlow = ai.defineFlow(
       query: input.query,
       resumeData,
       linkedInData,
+      chatHistory: input.chatHistory,
     });
 
     if (!result.output) {
-      console.warn('AI Chatbot prompt returned null output for query:', input.query);
-      // Fallback response if the LLM output is null
+      console.warn('AI Chatbot prompt returned null output for query:', input.query, 'with history:', input.chatHistory);
       return { response: "I'm sorry, I encountered an issue and couldn't generate a response at this moment. Please try asking in a different way or try again later." };
     }
     return result.output;
   }
 );
+
+    
