@@ -124,7 +124,7 @@ export default function HeroSection() {
 
         {/* Right Column: Chat Interface */}
         <div 
-            className="md:col-span-2 w-full animate-fadeInUp opacity-0 md:mt-16"
+            className="md:col-span-2 w-full animate-fadeInUp opacity-0 md:mt-28" // Increased top margin
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.5}s` }} 
           >
             <ChatInterface />
@@ -134,3 +134,4 @@ export default function HeroSection() {
   );
 }
 
+    

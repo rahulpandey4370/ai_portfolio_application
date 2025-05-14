@@ -19,7 +19,8 @@ export default function Header() {
           <Link href="/#skills" className="text-foreground/60 transition-colors hover:text-foreground/80">Skills</Link>
           <Link href="/#experience" className="text-foreground/60 transition-colors hover:text-foreground/80">Experience</Link>
           <Link href="/#projects" className="text-foreground/60 transition-colors hover:text-foreground/80">Projects</Link>
-          {/* <Link href="/#chatbot" className="text-foreground/60 transition-colors hover:text-foreground/80">AI Chat</Link> Removed */}
+          <Link href="/#articles" className="text-foreground/60 transition-colors hover:text-foreground/80">Articles</Link>
+          <Link href="/#videos" className="text-foreground/60 transition-colors hover:text-foreground/80">Videos</Link>
         </nav>
         <div className="flex items-center justify-end space-x-2">
           <a href={portfolioData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-foreground/60 transition-colors hover:text-foreground/80">
@@ -34,3 +35,5 @@ export default function Header() {
     </header>
   );
 }
+
+    

@@ -36,6 +36,22 @@ export interface SkillEntry {
   imageUrl?: string; // Optional URL for a custom logo image
 }
 
+export interface ArticleEntry {
+  id: string;
+  title: string;
+  link: string;
+  source: string;
+  description: string;
+  iconName?: keyof typeof import('lucide-react');
+}
+
+export interface YouTubeVideoEntry {
+  id: string;
+  title: string;
+  embedId: string;
+  description: string;
+}
+
 export interface PortfolioData {
   name: string;
   role: string;
@@ -54,6 +70,8 @@ export interface PortfolioData {
   experience: ExperienceEntry[];
   skills: SkillEntry[];
   projects: ProjectEntry[];
+  articles: ArticleEntry[];
+  youtubeVideos: YouTubeVideoEntry[];
 }
 
 export const portfolioData: PortfolioData = {
@@ -62,7 +80,7 @@ export const portfolioData: PortfolioData = {
   contact: {
     email: "rahul.ranjan.pandey.4370@gmail.com",
     linkedin: "https://www.linkedin.com/in/rahul-ranjan-pandey-0a13b0116/",
-    github: "https://github.com/rahul-pandey-ct", // Updated GitHub link
+    github: "https://github.com/rahul-pandey-ct",
   },
   hero: {
     title: "Hi, I'm Rahul Ranjan Pandey",
@@ -182,5 +200,47 @@ export const portfolioData: PortfolioData = {
       // liveLink: "#",
       // repoLink: "#"
     }
-  ]
+  ],
+  articles: [
+    {
+      id: "article1",
+      title: "A Survey on Evaluation of Large Language Models (ArXiv: 2505.03335)",
+      link: "https://arxiv.org/abs/2505.03335",
+      source: "ArXiv",
+      description: "A comprehensive survey on the methodologies and metrics for evaluating Large Language Models.",
+      iconName: "FileText",
+    },
+    {
+      id: "article2",
+      title: "Science in the Age of AI",
+      link: "https://www.quantamagazine.org/series/science-in-the-age-of-ai/",
+      source: "Quanta Magazine",
+      description: "An insightful series exploring the impact and future of Artificial Intelligence in scientific discovery.",
+      iconName: "Atom",
+    },
+    {
+      id: "article3",
+      title: "Foundation Model for Personalized Recommendation",
+      link: "https://netflixtechblog.com/foundation-model-for-personalized-recommendation-1a0bd8e02d39",
+      source: "Netflix TechBlog",
+      description: "Exploring how Netflix leverages foundation models to enhance personalized recommendations.",
+      iconName: "Network",
+    },
+  ],
+  youtubeVideos: [
+    {
+      id: "video1",
+      title: "Attention Is All You Need (Transformer Model)",
+      embedId: "Rd6F5wHIysM",
+      description: "A visual and intuitive explanation of the Transformer model and the 'Attention' mechanism, foundational to many LLMs. By A.I. Sisyphus.",
+    },
+    {
+      id: "video2",
+      title: "The Illustrated Word2vec (NLP)",
+      embedId: "ZbIVOy_GPyQ",
+      description: "A clear explanation of Word2vec, a popular technique for learning word embeddings. By A.I. Sisyphus.",
+    },
+  ],
 };
+
+    
