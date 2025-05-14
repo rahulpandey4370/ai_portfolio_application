@@ -93,7 +93,7 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col h-[600px] max-h-[80vh] w-full max-w-2xl mx-auto bg-card shadow-2xl rounded-lg border">
+    <div className="flex flex-col h-[600px] max-h-[70vh] md:max-h-[60vh] w-full max-w-2xl mx-auto bg-card shadow-2xl rounded-lg border"> {/* Adjusted max-h */}
       <div className="p-4 border-b flex items-center gap-3">
         <MessageSquare className="h-6 w-6 text-primary" />
         <h3 className="text-lg font-semibold text-primary">Chat with AI Rahul</h3>
@@ -110,7 +110,7 @@ export default function ChatInterface() {
             >
               {msg.sender === 'bot' && (
                 <Avatar className="h-8 w-8">
-                  <AvatarImage src="/rahul-avatar.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
+                  <AvatarImage src="https://placehold.co/40x40.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
                   <AvatarFallback>AI</AvatarFallback>
                 </Avatar>
               )}
@@ -134,7 +134,7 @@ export default function ChatInterface() {
           {isLoading && (
             <div className="flex items-end gap-2 justify-start animate-fadeIn">
               <Avatar className="h-8 w-8">
-                <AvatarImage src="/rahul-avatar.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
+                <AvatarImage src="https://placehold.co/40x40.png" alt="Bot Avatar" data-ai-hint="AI assistant" />
                 <AvatarFallback>AI</AvatarFallback>
               </Avatar>
               <div className="max-w-[70%] rounded-lg px-4 py-2 text-sm shadow bg-secondary text-secondary-foreground">
@@ -162,5 +162,3 @@ export default function ChatInterface() {
     </div>
   );
 }
-
-    

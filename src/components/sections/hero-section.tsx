@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Download, Award, BrainCircuit, MapPin } from 'lucide-react';
 import { portfolioData } from '@/lib/data';
+import ChatInterface from '@/components/chat-interface'; // Import ChatInterface
 
 export default function HeroSection() {
   const [renderText, setRenderText] = useState(false);
@@ -63,9 +64,9 @@ export default function HeroSection() {
         ></div>
       </div>
 
-      <div className="container px-4 md:px-6 grid md:grid-cols-5 gap-x-8 gap-y-12 items-center">
-        {/* Text Content (Left Column) */}
-        <div className="md:col-span-3 text-center md:text-left">
+      <div className="container px-4 md:px-6 grid md:grid-cols-5 gap-x-8 gap-y-12 items-start"> {/* Changed items-center to items-start for better chat layout */}
+        {/* Text Content & Chat (Left Column) */}
+        <div className="md:col-span-3 text-center md:text-left flex flex-col">
           <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl hero-text-animation mb-4">
             {renderText && animatedText(portfolioData.hero.title, 0)}
           </h1>
@@ -75,6 +76,15 @@ export default function HeroSection() {
           >
             {portfolioData.hero.subtitle}
           </p>
+
+          {/* Chat Interface Integration */}
+          <div 
+            className="mt-8 w-full max-w-lg mx-auto md:mx-0 hero-text-animation opacity-0"
+            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.35}s` }} // Stagger animation
+          >
+            <ChatInterface />
+          </div>
+          
           <div 
             className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 hero-text-animation opacity-0"
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.5}s` }}
@@ -95,7 +105,7 @@ export default function HeroSection() {
         </div>
 
         {/* Image and Details (Right Column) */}
-        <div className="md:col-span-2 flex flex-col items-center animate-fadeInUp" style={{ animationDelay: "0.4s" }}>
+        <div className="md:col-span-2 flex flex-col items-center animate-fadeInUp mt-0 md:mt-12" style={{ animationDelay: "0.4s" }}> {/* Added md:mt-12 to align better if left col gets very tall */}
           <Image
             src="https://placehold.co/280x280.png" 
             alt={portfolioData.name}
@@ -110,15 +120,15 @@ export default function HeroSection() {
             <p className="text-md text-muted-foreground mt-1">{portfolioData.role}</p>
             
             <ul className="mt-6 space-y-2 text-sm text-foreground/80 animate-fadeInUp" style={{ animationDelay: "0.6s" }}>
-              <li className="flex items-center justify-center gap-2">
+              <li className="flex items-center justify-center md:justify-start gap-2"> {/* md:justify-start */}
                 <Award className="h-4 w-4 text-accent" />
                 <span>2+ Years in AI/ML</span>
               </li>
-              <li className="flex items-center justify-center gap-2">
+              <li className="flex items-center justify-center md:justify-start gap-2"> {/* md:justify-start */}
                 <BrainCircuit className="h-4 w-4 text-accent" />
                 <span>Generative AI Focus</span>
               </li>
-              <li className="flex items-center justify-center gap-2">
+              <li className="flex items-center justify-center md:justify-start gap-2"> {/* md:justify-start */}
                 <MapPin className="h-4 w-4 text-accent" />
                 <span>Based in Bengaluru</span>
               </li>
@@ -129,4 +139,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
