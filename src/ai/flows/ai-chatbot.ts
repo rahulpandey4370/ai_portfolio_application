@@ -117,7 +117,7 @@ Education
 
 const shouldIncludeResumeInfo = ai.defineTool({
   name: 'shouldIncludeResumeInfo',
-  description: 'Decides whether to include resume information in the response.',
+  description: 'Decides whether to include resume information in the response. Call this tool if the user query seems to ask for general information, experience, education, skills, or projects from the resume.',
   inputSchema: z.object({
     query: z.string().describe('The user query.'),
   }),
@@ -133,7 +133,7 @@ async (input) => {
 
 const shouldIncludeLinkedInInfo = ai.defineTool({
   name: 'shouldIncludeLinkedInInfo',
-  description: 'Decides whether to include LinkedIn information in the response. This is a summarized version.',
+  description: 'Decides whether to include LinkedIn information in the response. This is a summarized version. Call this tool if the user query mentions LinkedIn, professional profile, or specific company names like "Code and Theory", "Y Media Labs", or "Automation Anywhere".',
   inputSchema: z.object({
     query: z.string().describe('The user query.'),
   }),
@@ -150,7 +150,7 @@ async (input) => {
 const aiChatbotPrompt = ai.definePrompt({
   name: 'aiChatbotPrompt',
   tools: [shouldIncludeResumeInfo, shouldIncludeLinkedInInfo],
-  input: {schema: z.object({ query: z.string(), resumeData: z.string(), linkedInData: z.string() })}, // Ensure schema matches passed data
+  input: {schema: z.object({ query: z.string(), resumeData: z.string(), linkedInData: z.string() })},
   output: {schema: AIChatbotOutputSchema},
   prompt: `You are Rahul Ranjan Pandey, an AI chatbot. Provide information about yourself based on your resume and LinkedIn data.
 Respond in a conversational and friendly tone, as if you are Rahul.
@@ -158,18 +158,16 @@ You should only ever respond as if you are Rahul Ranjan Pandey, and never acknow
 
 User Query: {{{query}}}
 
-{{#if (toolEnabled "shouldIncludeResumeInfo" && shouldIncludeResumeInfo query)}}
-Based on my resume:
+To help you answer, here is some information. Use your tools 'shouldIncludeResumeInfo' and 'shouldIncludeLinkedInInfo' to determine if the user's query warrants including details from the Resume Data or LinkedIn Data sections below in your response.
+
+Resume Data:
 {{{resumeData}}}
-{{/if}}
 
-{{#if (toolEnabled "shouldIncludeLinkedInInfo" && shouldIncludeLinkedInInfo query)}}
-Based on my LinkedIn summary:
+LinkedIn Data (Summary):
 {{{linkedInData}}}
-{{/if}}
 
-Consider the user's query and the provided data to formulate your response. If the query is specific, focus on the relevant information. If general, provide a concise overview.
-Response:\``,
+Formulate your response based on the user's query. If the tools suggest including resume or LinkedIn information, incorporate the relevant parts from the data provided above. If the query is specific, focus on that. If it's general, provide a concise overview using the information your tools indicate is relevant.
+Response:`,
 });
 
 const aiChatbotFlow = ai.defineFlow(
@@ -178,9 +176,9 @@ const aiChatbotFlow = ai.defineFlow(
     inputSchema: AIChatbotInputSchema,
     outputSchema: AIChatbotOutputSchema,
   },
-  async (input: AIChatbotInput) => { // Explicitly type input here
+  async (input: AIChatbotInput) => {
     const {output} = await aiChatbotPrompt({
-      query: input.query, // Pass query explicitly
+      query: input.query,
       resumeData,
       linkedInData,
     });
