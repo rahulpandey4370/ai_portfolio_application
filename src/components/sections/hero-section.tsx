@@ -74,7 +74,7 @@ export default function HeroSection() {
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.4}s` }}
           >
             <Image
-              src="/images/rahul-portrait.png"
+              src="/Rahul_Portrait.JPG"
               alt={portfolioData.name}
               width={280}
               height={280}
@@ -114,7 +114,7 @@ export default function HeroSection() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/30 transition-shadow w-full sm:w-auto">
-              <a href="/resume.pdf" download="Rahul_Ranjan_Pandey_Resume.pdf">
+              <a href="/Rahul_Ranjan_Pandey_Resume_AI_Portfolio.pdf" download="Rahul_Ranjan_Pandey_Resume_AI_Portfolio.pdf"> {/* Updated href and download to match assumed full PDF name */}
                 Download CV
                 <Download className="ml-2 h-5 w-5" />
               </a>
@@ -133,3 +133,4 @@ export default function HeroSection() {
     </section>
   );
 }
+

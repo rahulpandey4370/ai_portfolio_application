@@ -120,30 +120,30 @@ export const portfolioData: PortfolioData = {
   ],
   skills: [
     // Technical Skills
-    { name: "Python", category: "Technical", level: "high", imageUrl: "/images/logos/python-logo.png", iconName: "Code2" },
-    { name: "SQL", category: "Technical", level: "high", iconName: "Database" },
+    { name: "Python", category: "Technical", level: "high", imageUrl: "/python_logo.png", iconName: "Code2" },
+    { name: "SQL", category: "Technical", level: "high", iconName: "Database", imageUrl: "/sql_logo.png" },
     { name: "ETL Pipeline", category: "Technical", level: "high", iconName: "Workflow" },
     { name: "Data Warehousing", category: "Technical", level: "medium", iconName: "Archive" },
     { name: "Hadoop", category: "Technical", level: "medium", iconName: "ServerCog" },
-    { name: "Spark", category: "Technical", level: "medium", iconName: "Sparkles" },
+    { name: "Spark", category: "Technical", level: "medium", iconName: "Sparkles", imageUrl: "/Apache_Spark_logo.png" },
     { name: "Hive", category: "Technical", level: "medium", iconName: "DatabaseZap" },
-    { name: "Git", category: "Technical", level: "high", iconName: "GitFork" },
-    { name: "Agile", category: "Technical", level: "medium", iconName: "IterationCcw" },
+    { name: "Git", category: "Technical", level: "high", iconName: "GitFork", imageUrl: "/git_logo.png" },
+    { name: "Agile", category: "Technical", level: "medium", iconName: "IterationCcw", imageUrl: "/agile_logo.png" },
 
     // Machine Learning & AI
     { name: "Machine Learning", category: "Machine Learning & AI", level: "high", iconName: "BrainCircuit" },
     { name: "Deep Learning", category: "Machine Learning & AI", level: "high", iconName: "Layers3" },
     { name: "GenAI", category: "Machine Learning & AI", level: "high", iconName: "Bot" },
-    { name: "LLMs", category: "Machine Learning & AI", level: "high", iconName: "MessageSquareText" },
-    { name: "AWS", category: "Machine Learning & AI", level: "medium", iconName: "Cloud" },
+    { name: "LLMs", category: "Machine Learning & AI", level: "high", iconName: "MessageSquareText", imageUrl: "/LLM.png" },
+    { name: "AWS", category: "Machine Learning & AI", level: "medium", iconName: "Cloud", imageUrl: "/aws_logo.png" },
     { name: "Databricks", category: "Machine Learning & AI", level: "medium", iconName: "Boxes" },
-    { name: "GCP", category: "Machine Learning & AI", level: "medium", iconName: "CloudCog" },
-    { name: "PyTorch", category: "Machine Learning & AI", level: "medium", iconName: "Network" },
+    { name: "GCP", category: "Machine Learning & AI", level: "medium", iconName: "CloudCog", imageUrl: "/GCP_logo.jpg" },
+    { name: "PyTorch", category: "Machine Learning & AI", level: "medium", iconName: "Network", imageUrl: "/pytorch_logo.png" },
     { name: "LlamaIndex", category: "Machine Learning & AI", level: "medium", iconName: "LibraryBig" },
-    { name: "Langchain", category: "Machine Learning & AI", level: "medium", iconName: "Link2" },
+    { name: "Langchain", category: "Machine Learning & AI", level: "medium", iconName: "Link2", imageUrl: "/langchain_logo.png" },
     { name: "Data Analytics", category: "Machine Learning & AI", level: "high", iconName: "BarChart3" },
-    { name: "Pandas", category: "Machine Learning & AI", level: "medium", iconName: "Table2" },
-    { name: "Numpy", category: "Machine Learning & AI", level: "medium", iconName: "SigmaSquare" },
+    { name: "Pandas", category: "Machine Learning & AI", level: "medium", iconName: "Table2", imageUrl: "/pandas_logo.svg" },
+    { name: "Numpy", category: "Machine Learning & AI", level: "medium", iconName: "SigmaSquare", imageUrl: "/numpy_logo.png" },
     { name: "Matplotlib", category: "Machine Learning & AI", level: "medium", iconName: "AreaChart" },
     { name: "AI Tools", category: "Machine Learning & AI", level: "medium", iconName: "WandSparkles" },
   
@@ -162,7 +162,7 @@ export const portfolioData: PortfolioData = {
       description: "Smart RAG-based knowledge assistant with specialized agentic modules and a GenAI evaluation framework.",
       longDescription: "Built a smart RAG-based knowledge assistant that ingests data from Workfront, HubSpot, APIs, and web scraping, followed by ETL and ingestion into a vector DB with TF-IDF boosted retrieval. Developed specialized agentic modules (search agent, relevance agent, processing agent) to improve context retrieval, response accuracy, and overall efficiency of the RAG system. Designed and implemented a GenAI evaluation framework, combining BLEU, ROUGE, and LLM-as-a-judge methods to assess model outputs on correctness, relevance, instruction-following, and QA performance.",
       techStack: ["GenAI", "RAG", "Vector DB", "TF-IDF", "ETL", "Python", "APIs", "Web Scraping", "BLEU", "ROUGE", "LLM-as-a-judge"],
-      imageUrl: "/images/projects/project-knowledge-base.png",
+      imageUrl: "/images/projects/project-knowledge-base.png", // Kept original as no direct replacement in public folder dump for this specific project
       dataAiHint: "AI knowledge",
       // liveLink: "#", 
       // repoLink: "#" 
@@ -173,7 +173,7 @@ export const portfolioData: PortfolioData = {
       description: "AI-powered web scraper with an ETL pipeline for scalable data warehousing and user insights.",
       longDescription: "Developed an AI-powered web scraper to extract structured data. Built an ETL pipeline using Databricks (Spark), Hadoop, and Hive for scalable data warehousing and analysis, reducing processing time by 25%. Leveraged PySpark notebooks in Databricks for seamless data transformation and monitoring. Delivered user segmentation and sentiment analysis for actionable insights.",
       techStack: ["AI", "Web Scraping", "ETL", "Databricks", "Spark", "Hadoop", "Hive", "PySpark", "User Segmentation", "Sentiment Analysis"],
-      imageUrl: "/images/projects/project-web-scraper.png",
+      imageUrl: "/scraper.png", // Updated to use image from public root
       dataAiHint: "data extraction",
       // liveLink: "#",
       // repoLink: "#"
@@ -184,7 +184,7 @@ export const portfolioData: PortfolioData = {
       description: "Recommendation engine for event suggestions achieving 95% accuracy through advanced ML techniques.",
       longDescription: "Built a recommendation engine for event suggestions based on user interests, achieving an accuracy rate of 95%. Experimented with similarity metrics, clustering, and collaborative filtering techniques, achieving a 15% improvement in personalization accuracy.",
       techStack: ["Recommendation Systems", "Machine Learning", "Python", "Collaborative Filtering", "Clustering", "Similarity Metrics"],
-      imageUrl: "/images/projects/project-recommender.png",
+      imageUrl: "/images/projects/project-recommender.png", // Kept original as no direct replacement
       dataAiHint: "event algorithm",
       // liveLink: "#",
       // repoLink: "#"
@@ -195,7 +195,7 @@ export const portfolioData: PortfolioData = {
       description: "Custom LLM solution for summarization, email generation, and recommendations from conversation data.",
       longDescription: "Developed a custom LLM solution to provide client-specific summaries, email generation, and resource recommendations based on conversation data. Implemented data cleaning, feature engineering, and context-limiting using LlamaIndex.",
       techStack: ["LLM", "LlamaIndex", "NLP", "Python", "Data Cleaning", "Feature Engineering"],
-      imageUrl: "/images/projects/project-llm-summarizer.png",
+      imageUrl: "/images/projects/project-llm-summarizer.png", // Kept original as no direct replacement
       dataAiHint: "AI text",
       // liveLink: "#",
       // repoLink: "#"
@@ -205,9 +205,9 @@ export const portfolioData: PortfolioData = {
     {
       id: "article1",
       title: "A Survey on Evaluation of Large Language Models (ArXiv: 2307.03109)",
-      link: "https://arxiv.org/abs/2307.03109", // Corrected from 2505.03335 if that was a typo
+      link: "https://arxiv.org/abs/2307.03109",
       source: "ArXiv",
-      description: "A comprehensive survey on the methodologies and metrics for evaluating Large Language Models. (Note: ArXiv ID 2505.03335 doesn't seem to exist, using a common survey example. Please verify/update if a specific paper is intended).",
+      description: "A comprehensive survey on the methodologies and metrics for evaluating Large Language Models.",
       iconName: "FileText",
     },
     {
@@ -242,3 +242,4 @@ export const portfolioData: PortfolioData = {
     },
   ],
 };
+
