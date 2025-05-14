@@ -120,7 +120,7 @@ export const portfolioData: PortfolioData = {
   ],
   skills: [
     // Technical Skills
-    { name: "Python", category: "Technical", level: "high", imageUrl: "/python_logo.png", iconName: "Code2" },
+    { name: "Python", category: "Technical", level: "high", imageUrl: "/python.png", iconName: "Code2" },
     { name: "SQL", category: "Technical", level: "high", iconName: "Database", imageUrl: "/sql_logo.png" },
     { name: "ETL Pipeline", category: "Technical", level: "high", iconName: "Workflow" },
     { name: "Data Warehousing", category: "Technical", level: "medium", iconName: "Archive" },
@@ -135,7 +135,7 @@ export const portfolioData: PortfolioData = {
     { name: "Deep Learning", category: "Machine Learning & AI", level: "high", iconName: "Layers3" },
     { name: "GenAI", category: "Machine Learning & AI", level: "high", iconName: "Bot" },
     { name: "LLMs", category: "Machine Learning & AI", level: "high", iconName: "MessageSquareText", imageUrl: "/LLM.png" },
-    { name: "AWS", category: "Machine Learning & AI", level: "medium", iconName: "Cloud", imageUrl: "/aws_logo.png" },
+    { name: "AWS", category: "Machine Learning & AI", level: "medium", iconName: "Cloud", imageUrl: "/aws.svg" },
     { name: "Databricks", category: "Machine Learning & AI", level: "medium", iconName: "Boxes" },
     { name: "GCP", category: "Machine Learning & AI", level: "medium", iconName: "CloudCog", imageUrl: "/GCP_logo.jpg" },
     { name: "PyTorch", category: "Machine Learning & AI", level: "medium", iconName: "Network", imageUrl: "/pytorch_logo.png" },
