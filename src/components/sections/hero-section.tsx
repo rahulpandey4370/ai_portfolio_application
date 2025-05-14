@@ -74,7 +74,7 @@ export default function HeroSection() {
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.4}s` }}
           >
             <Image
-              src="/Rahul_Portrait.JPG"
+              src="/rahul_pic.png"
               alt={portfolioData.name}
               width={280}
               height={280}
