@@ -246,7 +246,7 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "video2",
-      title: "N8N Full Tutorial: Building AI Agents in 2025 for Beginners!",
+      title: "Building AI Agents in 2025 for Beginners!",
       embedId: "ZbIVOy_GPyQ",
       description: "A clear explanation of video for begineers to get started with Agentic AI Workflows using N8N.",
     },
