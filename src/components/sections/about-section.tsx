@@ -55,7 +55,11 @@ export default function AboutSection() {
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
               {portfolioData.skills.map((skill) => (
-                <Badge key={skill} variant="secondary" className="text-sm px-3 py-1 bg-accent/10 text-accent-foreground hover:bg-accent/20">
+                <Badge 
+                  key={skill} 
+                  variant="secondary" 
+                  className="text-sm px-3 py-1 bg-accent/10 text-accent-foreground hover:bg-accent/20 dark:bg-accent/40 dark:hover:bg-accent/50"
+                >
                   {skill}
                 </Badge>
               ))}
