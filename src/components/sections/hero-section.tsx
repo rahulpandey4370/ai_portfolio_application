@@ -21,7 +21,7 @@ export default function HeroSection() {
     return text.split("").map((char, index) => (
       <span
         key={index}
-        className="hero-text-animation"
+        className="hero-text-animation" // This class is for individual characters
         style={{ animationDelay: `${baseDelay + index * 0.03}s` }}
       >
         {char === " " ? "\u00A0" : char}
@@ -67,11 +67,11 @@ export default function HeroSection() {
       <div className="container px-4 md:px-6 grid md:grid-cols-5 gap-x-8 gap-y-12 items-start"> {/* Changed items-center to items-start for better chat layout */}
         {/* Text Content & Chat (Left Column) */}
         <div className="md:col-span-3 text-center md:text-left flex flex-col">
-          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl hero-text-animation mb-4">
+          <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl mb-4">
             {renderText && animatedText(portfolioData.hero.title, 0)}
           </h1>
           <p 
-            className="mt-4 text-md leading-relaxed text-foreground/80 md:text-lg lg:text-xl hero-text-animation opacity-0"
+            className="mt-4 text-md leading-relaxed text-foreground/80 md:text-lg lg:text-xl animate-fadeInUp opacity-0" // Used animate-fadeInUp directly
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.2}s` }}
           >
             {portfolioData.hero.subtitle}
@@ -79,15 +79,15 @@ export default function HeroSection() {
 
           {/* Chat Interface Integration */}
           <div 
-            className="mt-8 w-full max-w-lg mx-auto md:mx-0 hero-text-animation opacity-0"
-            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.35}s` }} // Stagger animation
+            className="mt-8 w-full max-w-lg mx-auto md:mx-0 animate-fadeInUp opacity-0" // Changed from hero-text-animation
+            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.45}s` }} // Adjusted delay
           >
             <ChatInterface />
           </div>
           
           <div 
-            className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 hero-text-animation opacity-0"
-            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.5}s` }}
+            className="mt-8 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 animate-fadeInUp opacity-0" // Used animate-fadeInUp
+            style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.65}s` }} // Adjusted delay
           >
             <Button asChild size="lg" className="shadow-lg hover:shadow-primary/30 transition-shadow w-full sm:w-auto">
               <Link href="/#projects">
