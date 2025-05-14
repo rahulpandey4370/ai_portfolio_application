@@ -20,8 +20,9 @@ export interface ProjectEntry {
   description: string;
   longDescription?: string; // For project summarizer input
   techStack: string[];
-  imageUrl: string;
+  imageUrl: string; // Placeholder image
   dataAiHint: string;
+  imageGenerationPrompt: string; // Prompt for dynamic image generation
   liveLink?: string;
   repoLink?: string;
 }
@@ -52,7 +53,7 @@ export const portfolioData: PortfolioData = {
   contact: {
     email: "rahul.ranjan.pandey.4370@gmail.com",
     linkedin: "https://linkedin.com/in/rahul-ranjan-pandey-0a13b0116/",
-    github: "https://github.com/rahulrpandey", // Kept existing as not provided in resume
+    github: "https://github.com/rahulrpandey",
   },
   hero: {
     title: "Hi, I'm Rahul Ranjan Pandey",
@@ -105,8 +106,9 @@ export const portfolioData: PortfolioData = {
       techStack: ["GenAI", "RAG", "Vector DB", "TF-IDF", "ETL", "Python", "APIs", "Web Scraping", "BLEU", "ROUGE", "LLM-as-a-judge"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "knowledge base",
-      // liveLink: "#", // Add if available
-      // repoLink: "#" // Add if available
+      imageGenerationPrompt: "Futuristic AI knowledge base with glowing data networks and holographic charts, abstract technology.",
+      // liveLink: "#", 
+      // repoLink: "#" 
     },
     {
       id: "project2",
@@ -116,6 +118,7 @@ export const portfolioData: PortfolioData = {
       techStack: ["AI", "Web Scraping", "ETL", "Databricks", "Spark", "Hadoop", "Hive", "PySpark", "User Segmentation", "Sentiment Analysis"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "web scraper",
+      imageGenerationPrompt: "Dynamic data streams from websites flowing into a central data hub, with user insight charts, web scraping analytics.",
       // liveLink: "#",
       // repoLink: "#"
     },
@@ -127,6 +130,7 @@ export const portfolioData: PortfolioData = {
       techStack: ["Recommendation Systems", "Machine Learning", "Python", "Collaborative Filtering", "Clustering", "Similarity Metrics"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "recommendation engine",
+      imageGenerationPrompt: "Personalized event recommendation feed on a mobile device, 95 percent accuracy, modern social entertainment theme.",
       // liveLink: "#",
       // repoLink: "#"
     },
@@ -138,6 +142,7 @@ export const portfolioData: PortfolioData = {
       techStack: ["LLM", "LlamaIndex", "NLP", "Python", "Data Cleaning", "Feature Engineering"],
       imageUrl: "https://placehold.co/600x400.png",
       dataAiHint: "custom llm",
+      imageGenerationPrompt: "Abstract LLM processing conversations into summaries and emails, professional AI communication interface.",
       // liveLink: "#",
       // repoLink: "#"
     }

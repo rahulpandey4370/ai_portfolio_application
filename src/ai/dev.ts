@@ -3,3 +3,4 @@ config();
 
 import '@/ai/flows/project-summarizer.ts';
 import '@/ai/flows/ai-chatbot.ts';
+import '@/ai/flows/project-image-generator.ts';
