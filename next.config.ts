@@ -17,12 +17,6 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
-      { // Added for Python logo
-        protocol: 'https',
-        hostname: 'www.python.org',
-        port: '',
-        pathname: '/static/community_logos/**',
-      },
     ],
   },
 };

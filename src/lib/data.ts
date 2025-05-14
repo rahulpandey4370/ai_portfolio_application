@@ -22,7 +22,7 @@ export interface ProjectEntry {
   description: string;
   longDescription?: string; // For project summarizer input
   techStack: string[];
-  imageUrl: string; // Placeholder image
+  imageUrl: string; // Placeholder image or local path
   dataAiHint: string; // For generating better placeholder images or searching for real ones
   liveLink?: string;
   repoLink?: string;
@@ -33,7 +33,7 @@ export interface SkillEntry {
   category: 'Technical' | 'Machine Learning & AI' | 'Soft Skills';
   level: 'high' | 'medium' | 'low'; // Represents experience/prominence
   iconName?: keyof typeof import('lucide-react'); // Store the string name of the icon from lucide-react
-  imageUrl?: string; // Optional URL for a custom logo image
+  imageUrl?: string; // Optional URL for a custom logo image (local or remote)
 }
 
 export interface ArticleEntry {
@@ -120,7 +120,7 @@ export const portfolioData: PortfolioData = {
   ],
   skills: [
     // Technical Skills
-    { name: "Python", category: "Technical", level: "high", imageUrl: "https://www.python.org/static/community_logos/python-logo-master-v3-095.png", iconName: "Code2" },
+    { name: "Python", category: "Technical", level: "high", imageUrl: "/images/logos/python-logo.png", iconName: "Code2" },
     { name: "SQL", category: "Technical", level: "high", iconName: "Database" },
     { name: "ETL Pipeline", category: "Technical", level: "high", iconName: "Workflow" },
     { name: "Data Warehousing", category: "Technical", level: "medium", iconName: "Archive" },
@@ -162,7 +162,7 @@ export const portfolioData: PortfolioData = {
       description: "Smart RAG-based knowledge assistant with specialized agentic modules and a GenAI evaluation framework.",
       longDescription: "Built a smart RAG-based knowledge assistant that ingests data from Workfront, HubSpot, APIs, and web scraping, followed by ETL and ingestion into a vector DB with TF-IDF boosted retrieval. Developed specialized agentic modules (search agent, relevance agent, processing agent) to improve context retrieval, response accuracy, and overall efficiency of the RAG system. Designed and implemented a GenAI evaluation framework, combining BLEU, ROUGE, and LLM-as-a-judge methods to assess model outputs on correctness, relevance, instruction-following, and QA performance.",
       techStack: ["GenAI", "RAG", "Vector DB", "TF-IDF", "ETL", "Python", "APIs", "Web Scraping", "BLEU", "ROUGE", "LLM-as-a-judge"],
-      imageUrl: "https://placehold.co/600x400.png",
+      imageUrl: "/images/projects/project-knowledge-base.png",
       dataAiHint: "AI knowledge",
       // liveLink: "#", 
       // repoLink: "#" 
@@ -173,7 +173,7 @@ export const portfolioData: PortfolioData = {
       description: "AI-powered web scraper with an ETL pipeline for scalable data warehousing and user insights.",
       longDescription: "Developed an AI-powered web scraper to extract structured data. Built an ETL pipeline using Databricks (Spark), Hadoop, and Hive for scalable data warehousing and analysis, reducing processing time by 25%. Leveraged PySpark notebooks in Databricks for seamless data transformation and monitoring. Delivered user segmentation and sentiment analysis for actionable insights.",
       techStack: ["AI", "Web Scraping", "ETL", "Databricks", "Spark", "Hadoop", "Hive", "PySpark", "User Segmentation", "Sentiment Analysis"],
-      imageUrl: "https://placehold.co/600x400.png",
+      imageUrl: "/images/projects/project-web-scraper.png",
       dataAiHint: "data extraction",
       // liveLink: "#",
       // repoLink: "#"
@@ -184,7 +184,7 @@ export const portfolioData: PortfolioData = {
       description: "Recommendation engine for event suggestions achieving 95% accuracy through advanced ML techniques.",
       longDescription: "Built a recommendation engine for event suggestions based on user interests, achieving an accuracy rate of 95%. Experimented with similarity metrics, clustering, and collaborative filtering techniques, achieving a 15% improvement in personalization accuracy.",
       techStack: ["Recommendation Systems", "Machine Learning", "Python", "Collaborative Filtering", "Clustering", "Similarity Metrics"],
-      imageUrl: "https://placehold.co/600x400.png",
+      imageUrl: "/images/projects/project-recommender.png",
       dataAiHint: "event algorithm",
       // liveLink: "#",
       // repoLink: "#"
@@ -195,7 +195,7 @@ export const portfolioData: PortfolioData = {
       description: "Custom LLM solution for summarization, email generation, and recommendations from conversation data.",
       longDescription: "Developed a custom LLM solution to provide client-specific summaries, email generation, and resource recommendations based on conversation data. Implemented data cleaning, feature engineering, and context-limiting using LlamaIndex.",
       techStack: ["LLM", "LlamaIndex", "NLP", "Python", "Data Cleaning", "Feature Engineering"],
-      imageUrl: "https://placehold.co/600x400.png",
+      imageUrl: "/images/projects/project-llm-summarizer.png",
       dataAiHint: "AI text",
       // liveLink: "#",
       // repoLink: "#"
@@ -242,5 +242,3 @@ export const portfolioData: PortfolioData = {
     },
   ],
 };
-
-    
