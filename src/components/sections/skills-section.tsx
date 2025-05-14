@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from 'next/image';
@@ -83,7 +82,7 @@ export default function SkillsSection() {
         if (skillsInCategory.length === 0) return null;
 
         return (
-          <div key={category} className="mb-12 animate-fadeInUp" style={{animationDelay: `${catIndex * 0.2}s`}}>
+          <div key={category} className="mb-12 animate-fadeInUp max-w-5xl mx-auto" style={{animationDelay: `${catIndex * 0.2}s`}}>
             <h3 className="text-2xl font-semibold tracking-tight mb-6 text-center sm:text-left text-secondary-foreground dark:text-primary-foreground/90 border-b-2 border-primary/50 pb-2">
               {category}
             </h3>
