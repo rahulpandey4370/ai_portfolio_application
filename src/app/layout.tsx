@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: 'Rahul Ranjan Pandey - AI Portfolio',
   description: 'Personal portfolio of Rahul Ranjan Pandey, Software Engineer, showcasing projects, experience, and an AI-powered chatbot.',
   icons: {
-    icon: '/favicon.ico', // Assuming a favicon might be added later
+    icon: '/RP_AI_Favicon.jpeg', // Ensure RP_AI_Favicon.png is in the public folder
   },
 };
 
@@ -38,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col min-h-screen overflow-x-hidden"> {/* Added overflow-x-hidden here */}
+          <div className="flex flex-col min-h-screen overflow-x-hidden">
             <Header />
             <main className="flex-grow">{children}</main>
             <Footer />
