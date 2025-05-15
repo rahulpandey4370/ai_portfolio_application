@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: 'Rahul Ranjan Pandey - AI Portfolio',
   description: 'Personal portfolio of Rahul Ranjan Pandey, Software Engineer, showcasing projects, experience, and an AI-powered chatbot.',
   icons: {
-    icon: '/RP_AI_Favicon.jpeg', // Ensure RP_AI_Favicon.png is in the public folder
+    icon: '/RP_AI_Favicon.png', // Ensure RP_AI_Favicon.png is in the public folder
   },
 };
 
