@@ -4,16 +4,15 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { ThemeToggleButton } from '@/components/theme-toggle-button';
-import { Code2, Github, Linkedin, Menu, X } from 'lucide-react';
+import { Code2, Github, Linkedin, Menu, X, TestTubeDiagonal } from 'lucide-react';
 import { portfolioData } from '@/lib/data';
-import { usePathname } from 'next/navigation'; // Import usePathname
+import { usePathname } from 'next/navigation'; 
 import { cn } from '@/lib/utils';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname(); // Get current path
+  const pathname = usePathname(); 
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
@@ -23,6 +22,7 @@ export default function Header() {
     { href: "/#skills", label: "Skills" },
     { href: "/#experience", label: "Experience" },
     { href: "/#projects", label: "Projects" },
+    { href: "/#playground", label: "Playground" }, // Added
     { href: "/#articles", label: "Articles" },
     { href: "/#videos", label: "Videos" },
   ];
@@ -37,7 +37,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex flex-1 items-center space-x-4 sm:space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -50,7 +49,6 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Mobile Menu Button & Social Links for smaller screens */}
         <div className="flex flex-1 items-center justify-end md:hidden space-x-2">
           <a href={portfolioData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-foreground/60 transition-colors hover:text-foreground/80">
             <Github className="h-5 w-5" />
@@ -67,8 +65,7 @@ export default function Header() {
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
-        
-        {/* Social Links & Theme Toggle for larger screens */}
+
         <div className="hidden md:flex items-center justify-end space-x-2">
           <a href={portfolioData.contact.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-foreground/60 transition-colors hover:text-foreground/80">
             <Github className="h-5 w-5" />
@@ -80,7 +77,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 border-b border-border/40 shadow-lg animate-fadeIn">
           <nav className="flex flex-col space-y-1 px-4 py-3">
@@ -89,7 +85,7 @@ export default function Header() {
                 key={link.label}
                 href={link.href}
                 className="block rounded-md px-3 py-2 text-base font-medium text-foreground/80 hover:bg-accent hover:text-accent-foreground"
-                onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+                onClick={() => setIsMobileMenuOpen(false)} 
               >
                 {link.label}
               </Link>
