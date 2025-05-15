@@ -104,7 +104,7 @@ export default function HeroSection() {
           </div>
 
           <div
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 sm:gap-4 animate-fadeInUp opacity-0"
+            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-center gap-3 sm:gap-4 animate-fadeInUp opacity-0"
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.6}s` }}
           >
             <Button asChild size="lg" className="shadow-lg hover:shadow-primary/30 transition-shadow w-full sm:w-auto text-sm sm:text-base">
