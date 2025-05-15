@@ -55,7 +55,7 @@ Collaborated with cross-functional teams to integrate advanced analytics and mac
 Automation Anywhere | Software Engineer Intern			 			        	Mar '22 - Aug '22
 Assisted in cloud migration and application testing to support efficient backend processes.
 Projects
-Project 1: Agentic GenAI-Powered Knowledge Base & Evaluation Framework                                     Jan ’25 – Present
+Project 1: Agentic GenAI-Powered Knowledge Base & Evaluation Framework                                     Jan ’25 – May '25
 Built a smart RAG-based knowledge assistant that ingests data from Workfront, HubSpot, APIs, and web scraping, followed by ETL and ingestion into a vector DB with TF-IDF boosted retrieval.
 Developed specialized agentic modules (search agent, relevance agent, processing agent) to improve context retrieval, response accuracy, and overall efficiency of the RAG system.
 Designed and implemented a GenAI evaluation framework, combining BLEU, ROUGE, and LLM-as-a-judge methods to assess model outputs on correctness, relevance, instruction-following, and QA performance.
@@ -117,7 +117,7 @@ Skills:
 - AWS
 - GCP
 Experience:
-- Y MEDIA LABS PVT. LTD. (Now Code and Theory), Aug 2022 - Present
+- Y MEDIA LABS PVT. LTD. (Now Code and Theory), 16th Aug 2022 - 16th May 2025
 - Automation Anywhere, Mar 2022 - Aug 2022
 Education
 - SJB Institute of Technology, 2018-2022

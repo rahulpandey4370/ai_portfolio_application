@@ -20,18 +20,18 @@ export default function ArticlesSection() {
   }
 
   return (
-    <section id="articles" className="bg-secondary/50 dark:bg-secondary/20 w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
-      <div className="container mx-auto"> {/* Added container here to constrain inner content */}
-        <div className="text-center mb-12 animate-fadeInUp max-w-3xl mx-auto"> {/* Kept max-width for text block, increased from 2xl to 3xl */}
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary flex items-center justify-center gap-3">
-            <BookOpen className="h-8 w-8" />
+    <section id="articles" className="bg-secondary/50 dark:bg-secondary/20 w-full px-4 sm:px-6 lg:px-8"> 
+      <div className="container mx-auto"> 
+        <div className="text-center mb-10 md:mb-12 animate-fadeInUp max-w-3xl mx-auto"> 
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl text-primary flex items-center justify-center gap-2 sm:gap-3">
+            <BookOpen className="h-6 w-6 sm:h-8 sm:w-8" />
             Insightful Reads
           </h2>
-          <p className="mt-4 text-lg text-foreground/80">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-foreground/80">
             A curated collection of AI/ML articles and resources I find particularly insightful.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"> {/* Kept max-width and mx-auto to the grid. This is already quite wide. */}
+        <div className="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"> 
           {portfolioData.articles.map((article, index) => {
             const IconComponent = article.iconName ? iconMap[article.iconName] || BookOpen : BookOpen;
             return (
@@ -40,22 +40,22 @@ export default function ArticlesSection() {
                 className="flex flex-col animate-fadeInUp h-full shadow-lg hover:shadow-xl transition-shadow duration-300"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <CardHeader>
-                  <div className="flex items-center gap-3 mb-2">
-                    <IconComponent className="h-6 w-6 text-accent" />
-                    <CardTitle className="text-xl font-semibold text-primary">{article.title}</CardTitle>
+                <CardHeader className="pb-3 sm:pb-4">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+                    <IconComponent className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
+                    <CardTitle className="text-lg sm:text-xl font-semibold text-primary">{article.title}</CardTitle>
                   </div>
-                  {article.source && <p className="text-sm text-muted-foreground">Source: {article.source}</p>}
+                  {article.source && <p className="text-xs sm:text-sm text-muted-foreground">Source: {article.source}</p>}
                 </CardHeader>
-                <CardContent className="flex-grow">
-                  <CardDescription className="text-sm text-foreground/80">
+                <CardContent className="flex-grow pt-0 pb-3 sm:pb-4">
+                  <CardDescription className="text-sm sm:text-base text-foreground/80">
                     {article.description || "An insightful article on AI/ML."}
                   </CardDescription>
                 </CardContent>
-                <CardFooter>
-                  <Button variant="outline" asChild className="w-full">
+                <CardFooter className="pt-0">
+                  <Button variant="outline" asChild className="w-full text-xs sm:text-sm">
                     <Link href={article.link} target="_blank" rel="noopener noreferrer">
-                      Read Article <ExternalLink className="h-4 w-4 ml-2" />
+                      Read Article <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4 ml-1.5 sm:ml-2" />
                     </Link>
                   </Button>
                 </CardFooter>

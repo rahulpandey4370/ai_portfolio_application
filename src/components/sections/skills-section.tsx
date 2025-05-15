@@ -22,21 +22,21 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
   const IconComponent = getIconComponent(skill.iconName);
 
   const sizeClasses = {
-    high: 'p-3 min-h-[80px]',
-    medium: 'p-2.5 min-h-[70px]',
-    low: 'p-2 min-h-[60px]',
+    high: 'p-2.5 sm:p-3 min-h-[70px] sm:min-h-[80px]',
+    medium: 'p-2 sm:p-2.5 min-h-[60px] sm:min-h-[70px]',
+    low: 'p-1.5 sm:p-2 min-h-[50px] sm:min-h-[60px]',
   };
 
   const iconOrImageSizeClasses = {
-    high: 'h-7 w-7 mb-1.5',
-    medium: 'h-6 w-6 mb-1',
-    low: 'h-5 w-5 mb-1',
+    high: 'h-6 w-6 sm:h-7 sm:w-7 mb-1 sm:mb-1.5',
+    medium: 'h-5 w-5 sm:h-6 sm:w-6 mb-0.5 sm:mb-1',
+    low: 'h-4 w-4 sm:h-5 sm:w-5 mb-0.5 sm:mb-1',
   };
   
   const textSizeClasses = {
-    high: 'text-sm font-semibold',
-    medium: 'text-xs font-semibold',
-    low: 'text-xs font-normal',
+    high: 'text-xs sm:text-sm font-semibold',
+    medium: 'text-xs font-semibold', // Kept sm text-xs for medium to differentiate from high
+    low: 'text-[0.65rem] sm:text-xs font-normal',
   };
 
   return (
@@ -69,9 +69,9 @@ export default function SkillsSection() {
 
   return (
     <section id="skills" className="w-full px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-12 animate-fadeInUp max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary">Skills Arsenal</h2>
-        <p className="mt-4 text-lg text-foreground/80">
+      <div className="text-center mb-10 md:mb-12 animate-fadeInUp max-w-3xl mx-auto">
+        <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl text-primary">Skills Arsenal</h2>
+        <p className="mt-3 sm:mt-4 text-base sm:text-lg text-foreground/80">
           A showcase of my diverse technical and soft skills, honed through experience and continuous learning.
         </p>
       </div>
@@ -81,11 +81,11 @@ export default function SkillsSection() {
         if (skillsInCategory.length === 0) return null;
 
         return (
-          <div key={category} className="mb-12 animate-fadeInUp max-w-7xl mx-auto" style={{animationDelay: `${catIndex * 0.2}s`}}>
-            <h3 className="text-2xl font-semibold tracking-tight mb-6 text-center sm:text-left text-secondary-foreground dark:text-primary border-b-2 border-primary/50 pb-2">
+          <div key={category} className="mb-10 md:mb-12 animate-fadeInUp max-w-7xl mx-auto" style={{animationDelay: `${catIndex * 0.2}s`}}>
+            <h3 className="text-xl sm:text-2xl font-semibold tracking-tight mb-4 sm:mb-6 text-center sm:text-left dark:text-primary border-b-2 border-primary/50 pb-2">
               {category}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-3 md:gap-4">
               {skillsInCategory.map((skill, index) => (
                 <SkillItem key={skill.name} skill={skill} index={index} />
               ))}

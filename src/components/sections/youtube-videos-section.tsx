@@ -9,31 +9,31 @@ export default function YouTubeVideosSection() {
   }
 
   return (
-    <section id="videos" className="bg-background w-full px-4 sm:px-6 lg:px-8"> {/* Changed container to w-full and padding */}
-      <div className="container mx-auto"> {/* Added container here to constrain inner content */}
-        <div className="text-center mb-12 animate-fadeInUp max-w-3xl mx-auto"> {/* Kept max-width for text block, increased from 2xl to 3xl */}
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-primary flex items-center justify-center gap-3">
-            <YoutubeIcon className="h-8 w-8" />
+    <section id="videos" className="bg-background w-full px-4 sm:px-6 lg:px-8"> 
+      <div className="container mx-auto"> 
+        <div className="text-center mb-10 md:mb-12 animate-fadeInUp max-w-3xl mx-auto"> 
+          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl text-primary flex items-center justify-center gap-2 sm:gap-3">
+            <YoutubeIcon className="h-6 w-6 sm:h-8 sm:w-8" />
             Recommended Videos
           </h2>
-          <p className="mt-4 text-lg text-foreground/80">
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-foreground/80">
             Helpful and insightful YouTube videos on AI, Machine Learning, and related topics.
           </p>
         </div>
-        <div className="grid gap-8 md:grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto"> {/* Added max-width and mx-auto to the grid, increased from 6xl to 7xl */}
+        <div className="grid gap-6 md:gap-8 sm:grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto"> 
           {portfolioData.youtubeVideos.map((video, index) => (
             <Card 
               key={video.id} 
               className="animate-fadeInUp overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-1">
-                  <PlayCircle className="h-6 w-6 text-accent" />
-                  <CardTitle className="text-xl font-semibold text-primary">{video.title}</CardTitle>
+              <CardHeader className="pb-2 sm:pb-3">
+                <div className="flex items-center gap-2 sm:gap-3 mb-1">
+                  <PlayCircle className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
+                  <CardTitle className="text-lg sm:text-xl font-semibold text-primary">{video.title}</CardTitle>
                 </div>
               </CardHeader>
-              <CardContent className="aspect-video">
+              <CardContent className="aspect-video p-2 sm:p-3 md:p-4">
                 <iframe
                   className="w-full h-full rounded-md"
                   src={`https://www.youtube.com/embed/${video.embedId}`}
@@ -44,8 +44,8 @@ export default function YouTubeVideosSection() {
                 ></iframe>
               </CardContent>
                {video.description && (
-                 <CardContent className="pt-4">
-                    <CardDescription className="text-sm text-foreground/80">
+                 <CardContent className="pt-2 sm:pt-3 md:pt-4 px-2 sm:px-3 md:px-4 pb-2 sm:pb-3 md:pb-4">
+                    <CardDescription className="text-sm sm:text-base text-foreground/80">
                         {video.description}
                     </CardDescription>
                  </CardContent>

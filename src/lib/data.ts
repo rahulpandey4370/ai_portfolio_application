@@ -87,7 +87,7 @@ export const portfolioData: PortfolioData = {
     subtitle: "AI/ML & Data Engineer passionate about developing advanced machine learning models and AI solutions.",
     cta: "Explore My Work",
   },
-  summary: "Driven AI/ML & Data Engineer with over 2 years of experience, primarily focused on developing and deploying advanced machine learning models, AI solutions, and generative AI applications on cloud platforms such as AWS and GCP. Skilled in designing scalable data pipelines and robust ETL processes using Hadoop, Hive, Databricks and Spark to support high-impact AI initiatives, ensuring data security, compliance, and tailored, client-specific innovations.",
+  summary: "Driven AI/ML & Data Engineer with over 3 years of experience, primarily focused on developing and deploying advanced machine learning models, AI solutions, and generative AI applications on cloud platforms such as AWS and GCP. Skilled in designing scalable data pipelines and robust ETL processes using Hadoop, Hive, Databricks and Spark to support high-impact AI initiatives, ensuring data security, compliance, and tailored, client-specific innovations.",
   education: [
     {
       institution: "SJB Institute of Technology, Bengaluru, India",
@@ -106,7 +106,7 @@ export const portfolioData: PortfolioData = {
     {
       company: "Y MEDIA LABS PVT. LTD. (Now Code and Theory)",
       role: "Software Engineer [AI/ML]",
-      period: "August 2022 - Present",
+      period: "August 2022 - May 2025",
       description: "Developed tailored AI/ML models to address unique client requirements, delivering data-driven solutions that boosted operational efficiency by 35%. Integrated targeted data analytics and streamlined ETL processes using Hadoop, Hive, and Spark, while leveraging AWS and GCP cloud services to optimize data ingestion and enhance model performance, resulting in a 25% reduction in processing time. Collaborated with cross-functional teams to integrate advanced analytics and machine learning insights into robust production systems. SOP Award recipient for exceptional contributions and earned multiple KUDOS for outstanding teamwork and proactive problem-solving.",
       techStack: ["AI/ML", "Python", "ETL", "Hadoop", "Hive", "Spark", "AWS", "GCP", "Data Analytics"]
     },
