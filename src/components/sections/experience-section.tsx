@@ -1,6 +1,6 @@
 
 import { Briefcase, CalendarDays } from "lucide-react";
-import { portfolioData, type ExperienceEntry } from "@/lib/data";
+import { portfolioData, type ExperienceEntry } from "@/lib/data"; // Assuming portfolioData contains the experience data
 import { Badge } from "@/components/ui/badge";
 
 export default function ExperienceSection() {
@@ -18,9 +18,13 @@ export default function ExperienceSection() {
           {/* Vertical line */}
           <div className="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-border -translate-x-1/2" aria-hidden="true"></div>
 
-          {portfolioData.experience.map((exp, index) => (
+          {/* Ensure component iterates through all entries */}
+          {portfolioData.experience.map((exp, index) => {
+            // Determine alignment based on index for alternating layout
+            const isEven = index % 2 === 0;
+            return (
             <ExperienceItem key={index} experience={exp} index={index} />
-          ))}
+          )})}
         </div>
       </div>
     </section>
@@ -49,7 +53,10 @@ function ExperienceItem({ experience, index }: ExperienceItemProps) {
           <div className="absolute left-4 top-1 w-3 h-3 bg-primary rounded-full transform -translate-x-[calc(50%-2px)] md:left-1/2 md:-translate-x-1/2" aria-hidden="true"></div>
           <div className="ml-10 md:ml-0 bg-card p-4 sm:p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="flex items-center gap-2 mb-1">
-              <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+ {experience.imageUrl && (
+ <img src={experience.imageUrl} alt={`${experience.company} logo`} className="h-6 w-6 sm:h-7 sm:w-7 object-contain" />
+ )}
+              {/* <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 text-accent" /> */}
               <h3 className="text-lg sm:text-xl font-semibold text-primary">{experience.role}</h3>
             </div>
             <p className="text-base sm:text-md font-medium text-foreground/90">{experience.company}</p>

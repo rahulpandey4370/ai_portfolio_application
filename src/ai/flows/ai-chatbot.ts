@@ -47,11 +47,13 @@ Soft Skills: Leadership | Communication | Teamwork | Critical Thinking | Creativ
 Work Experience
 
 
-Y MEDIA LABS PVT. LTD. (Now Code and Theory) |  Software Engineer [AI/ML]			             Aug '22 - Current.
+Epicor | Product Developer [AI/ML] May '25 - Current
+Epicor is an ERP (Enterprise Resource Planning) based company.
+At Epicor, I am engaged in developing innovative product solutions and collaborating with cross-functional teams, leveraging my skills in Python, Azure, Machine Learning, Deep Learning, GenAI, and LLMs.
+
+Y MEDIA LABS PVT. LTD. (Now Code and Theory) |  Software Engineer [AI/ML]			             Aug '22 - May '25
 Developed tailored AI/ML models to address unique client requirements, delivering data-driven solutions that boosted operational efficiency by 35%.
 Integrated targeted data analytics and streamlined ETL processes using Hadoop, Hive, and Spark, while leveraging AWS and GCP cloud services to optimize data ingestion and enhance model performance, resulting in a 25% reduction in processing time.
-Collaborated with cross-functional teams to integrate advanced analytics and machine learning insights into robust production systems.
-
 Automation Anywhere | Software Engineer Intern			 			        	Mar '22 - Aug '22
 Assisted in cloud migration and application testing to support efficient backend processes.
 Projects
@@ -104,7 +106,7 @@ const linkedInData = `
 Rahul Ranjan Pandey
 Software Engineer at Y MEDIA LABS PVT. LTD. (Now Code and Theory)
 Skills:
-- Python
+- Python, Azure, Machine Learning, Deep Learning, GenAI, LLMs
 - SQL
 - ETL
 - Hadoop
@@ -116,7 +118,8 @@ Skills:
 - LLMs
 - AWS
 - GCP
-Experience:
+- Experience:
+- Epicor, May 2025 - Present
 - Y MEDIA LABS PVT. LTD. (Now Code and Theory), 16th Aug 2022 - 16th May 2025
 - Automation Anywhere, Mar 2022 - Aug 2022
 Education

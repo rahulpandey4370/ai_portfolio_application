@@ -90,22 +90,31 @@ export const portfolioData: PortfolioData = {
   summary: "Driven AI/ML & Data Engineer with over 3 years of experience, primarily focused on developing and deploying advanced machine learning models, AI solutions, and generative AI applications on cloud platforms such as AWS and GCP. Skilled in designing scalable data pipelines and robust ETL processes using Hadoop, Hive, Databricks and Spark to support high-impact AI initiatives, ensuring data security, compliance, and tailored, client-specific innovations.",
   education: [
     {
-      institution: "SJB Institute of Technology, Bengaluru, India",
+      institution: "SJB Institute of Technology, Bengaluru, India", // Corrected spelling
       degree: "Bachelor of Engineering in Information Science and Engineering",
       period: "2018 - 2022",
-      details: "CGPA: 9.1"
+      details: "CGPA: 9.1",
     },
     {
       institution: "Mount Assisi School, India",
       degree: "Higher Secondary (ISE Class XII) & Secondary (ICSE Class X)",
       period: "Secondary: 2015-2016, Higher Secondary: 2017-2018",
-      details: "ISE (Class XII) Percentage: 74. ICSE (Class X) Percentage: 87.1"
-    }
+      details: "ISE (Class XII) Percentage: 74. ICSE (Class X) Percentage: 87.1",
+    },
   ],
   experience: [
     {
+      company: "Epicor",
+      role: "Product Developer [AI/ML]", // Updated role
+      period: "May 2025 - Present",
+      description: "Engaged in developing innovative product solutions and collaborating with cross-functional teams.",
+      techStack: ["Python", "Azure", "Machine Learning", "Deep Learning", "GenAI", "LLMs"], // Added tech stack
+      imageUrl: "/logo.jpg", 
+    },
+    {
       company: "Y MEDIA LABS PVT. LTD. (Now Code and Theory)",
       role: "Software Engineer [AI/ML]",
+      imageUrl: "/code_and_theory_logo.jpg", 
       period: "August 2022 - May 2025",
       description: "Developed tailored AI/ML models to address unique client requirements, delivering data-driven solutions that boosted operational efficiency by 35%. Integrated targeted data analytics and streamlined ETL processes using Hadoop, Hive, and Spark, while leveraging AWS and GCP cloud services to optimize data ingestion and enhance model performance, resulting in a 25% reduction in processing time. Collaborated with cross-functional teams to integrate advanced analytics and machine learning insights into robust production systems. SOP Award recipient for exceptional contributions and earned multiple KUDOS for outstanding teamwork and proactive problem-solving.",
       techStack: ["AI/ML", "Python", "ETL", "Hadoop", "Hive", "Spark", "AWS", "GCP", "Data Analytics"]
@@ -113,10 +122,11 @@ export const portfolioData: PortfolioData = {
     {
       company: "Automation Anywhere",
       role: "Software Engineer Intern",
+      imageUrl: "/automation.png", 
       period: "March 2022 - August 2022",
       description: "Assisted in cloud migration and application testing to support efficient backend processes.",
       techStack: ["Cloud Migration", "Application Testing"]
-    }
+    },
   ],
   skills: [
     // Technical Skills
