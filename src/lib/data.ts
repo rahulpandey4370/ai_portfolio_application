@@ -106,14 +106,14 @@ export const portfolioData: PortfolioData = {
     {
       company: "Epicor",
       role: "Product Developer [AI/ML]", // Updated role
-      period: "May 2025 - Present",
+      period: "May 19th 2025 - Present",
       description: "Engaged in developing innovative product solutions and collaborating with cross-functional teams.",
       techStack: ["Python", "Azure", "Machine Learning", "Deep Learning", "GenAI", "LLMs"], // Added tech stack
       imageUrl: "/logo.jpg", 
     },
     {
       company: "Y MEDIA LABS PVT. LTD. (Now Code and Theory)",
-      role: "Software Engineer [AI/ML]",
+      role: "Software Engineer [AI/ML]", // Corrected role based on file content
       imageUrl: "/code_and_theory_logo.jpg", 
       period: "August 2022 - May 2025",
       description: "Developed tailored AI/ML models to address unique client requirements, delivering data-driven solutions that boosted operational efficiency by 35%. Integrated targeted data analytics and streamlined ETL processes using Hadoop, Hive, and Spark, while leveraging AWS and GCP cloud services to optimize data ingestion and enhance model performance, resulting in a 25% reduction in processing time. Collaborated with cross-functional teams to integrate advanced analytics and machine learning insights into robust production systems. SOP Award recipient for exceptional contributions and earned multiple KUDOS for outstanding teamwork and proactive problem-solving.",

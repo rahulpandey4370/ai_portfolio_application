@@ -42,14 +42,14 @@ Driven AI/ML & Data Engineer with over 2 years of experience, primarily focused 
 Skills
 
 Technical Skills: Python | SQL | ETL Pipeline Development | Data Warehousing | Hadoop | Spark | Hive
-Machine Learning & AI: Machine Learning | Deep Learning | GenAI | LLMs | AWS | Databricks | GCP | PyTorch | LlamaIndex | Langchain | Data Analytics (EDA using Pandas, Numpy, Matplotlib) | AI Tools | Git | Agile
+Machine Learning & AI: Machine Learning | Deep Learning | GenAI | LLMs | AWS | Databricks | GCP | PyTorch | LlamaIndex | Langchain | Data Analytics (EDA using Pandas, Numpy, Matplotlib) | AI Tools | Git | Agile | Azure
 Soft Skills: Leadership | Communication | Teamwork | Critical Thinking | Creativity | Adaptability
 Work Experience
 
 
-Epicor | Product Developer [AI/ML] May '25 - Current
+Epicor | Product Developer [AI/ML] May 19th 2025 - Present
 Epicor is an ERP (Enterprise Resource Planning) based company.
-At Epicor, I am engaged in developing innovative product solutions and collaborating with cross-functional teams, leveraging my skills in Python, Azure, Machine Learning, Deep Learning, GenAI, and LLMs.
+At Epicor, I am engaged in developing innovative product solutions and collaborating with cross-functional teams, leveraging my skills in Python, Azure, Machine Learning, Deep Learning, GenAI, and LLMs and developing cutting-edge AI/ML solutions.
 
 Y MEDIA LABS PVT. LTD. (Now Code and Theory) |  Software Engineer [AI/ML]			             Aug '22 - May '25
 Developed tailored AI/ML models to address unique client requirements, delivering data-driven solutions that boosted operational efficiency by 35%.
@@ -121,8 +121,7 @@ Skills:
 - Experience:
 - Epicor, May 2025 - Present
 - Y MEDIA LABS PVT. LTD. (Now Code and Theory), 16th Aug 2022 - 16th May 2025
-- Automation Anywhere, Mar 2022 - Aug 2022
-Education
+- Automation Anywhere, Mar 2022 - Aug 2022Education
 - SJB Institute of Technology, 2018-2022
 `;
 
