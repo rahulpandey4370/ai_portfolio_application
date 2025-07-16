@@ -1,4 +1,3 @@
-
 'use server';
 
 /**
@@ -57,19 +56,19 @@ Integrated targeted data analytics and streamlined ETL processes using Hadoop, H
 Automation Anywhere | Software Engineer Intern			 			        	Mar '22 - Aug '22
 Assisted in cloud migration and application testing to support efficient backend processes.
 Projects
-Project 1: Agentic GenAI-Powered Knowledge Base & Evaluation Framework                                     Jan ’25 – May '25
+Project 1: Agentic GenAI-Powered Knowledge Base & Evaluation Framework                                     Jan '25 – May '25
 Built a smart RAG-based knowledge assistant that ingests data from Workfront, HubSpot, APIs, and web scraping, followed by ETL and ingestion into a vector DB with TF-IDF boosted retrieval.
 Developed specialized agentic modules (search agent, relevance agent, processing agent) to improve context retrieval, response accuracy, and overall efficiency of the RAG system.
 Designed and implemented a GenAI evaluation framework, combining BLEU, ROUGE, and LLM-as-a-judge methods to assess model outputs on correctness, relevance, instruction-following, and QA performance.
-Project 2: AI-Driven Universal Web Scraper for User Insights							     Sep ’24
+Project 2: AI-Driven Universal Web Scraper for User Insights							     Sep '24
 Developed an AI-powered web scraper to extract structured data.
 Built an ETL pipeline using Databricks (Spark), Hadoop, and Hive for scalable data warehousing and analysis, reducing processing time by 25%.
 Leveraged PySpark notebooks in Databricks for seamless data transformation and monitoring.
 Delivered user segmentation and sentiment analysis for actionable insights.
-Project 3: Event Recommendation System with High-Accuracy Personalization				     Apr ’24
+Project 3: Event Recommendation System with High-Accuracy Personalization				     Apr '24
 Built a recommendation engine for event suggestions based on user interests, achieving an accuracy rate of 95%.
 Experimented with similarity metrics, clustering, and collaborative filtering techniques, achieving a 15% improvement in personalization accuracy.
-Project 4: Customized LLM for Client-Specific Summarization and Recommendations		                  Nov ’23
+Project 4: Customized LLM for Client-Specific Summarization and Recommendations		                  Nov '23
 Developed a custom LLM solution to provide client-specific summaries, email generation, and resource recommendations based on conversation data.
 Implemented data cleaning, feature engineering, and context-limiting using LlamaIndex.
 
@@ -159,45 +158,6 @@ async (input) => {
   }
 );
 
-const aiChatbotPrompt = ai.definePrompt({
-  name: 'aiChatbotPrompt',
-  tools: [shouldIncludeResumeInfo, shouldIncludeLinkedInInfo],
-  input: {schema: z.object({
-    query: z.string(),
-    resumeData: z.string(),
-    linkedInData: z.string(),
-    chatHistory: z.array(ChatMessageSchema).optional(),
-  })},
-  output: {schema: AIChatbotOutputSchema},
-  prompt: `You are Rahul Ranjan Pandey, an AI chatbot. Provide information about yourself based on your resume and LinkedIn data.
-Respond directly to the user's query. Avoid starting every message with generic greetings like "Hello" or "Hey there" unless it's the very beginning of a new conversation. Maintain a conversational and friendly tone, as if you are Rahul.
-You should only ever respond as if you are Rahul Ranjan Pandey, and never acknowledge that you are an AI unless explicitly asked about your nature as a chatbot.
-
-{{#if chatHistory}}
-Previous conversation:
-{{#each chatHistory}}
-{{this.sender}}: {{this.text}}
-{{/each}}
-{{/if}}
-
-Current User Query: {{{query}}}
-
-To help you answer, here is some information. You have access to two tools:
-1. 'shouldIncludeResumeInfo': Use this tool if the user's current query, considering the chat history, seems to ask for general information, experience, education, skills, or projects from the resume.
-2. 'shouldIncludeLinkedInInfo': Use this tool if the user's current query, considering the chat history, mentions LinkedIn, professional profile, or specific company names that might be better answered with a LinkedIn summary.
-
-Based on the current user's query, the previous conversation (if any), and the output of these tools (if you choose to use them), formulate your response.
-
-Resume Data (available if 'shouldIncludeResumeInfo' tool indicates it's relevant):
-{{{resumeData}}}
-
-LinkedIn Data (Summary, available if 'shouldIncludeLinkedInInfo' tool indicates it's relevant):
-{{{linkedInData}}}
-
-Formulate your response based on the user's query and chat history. If the tools suggest including resume or LinkedIn information, incorporate the relevant parts from the data provided above. If the query is specific, focus on that. If it's general, provide a concise overview using the information your tools indicate is relevant.
-Response:`,
-});
-
 const aiChatbotFlow = ai.defineFlow(
   {
     name: 'aiChatbotFlow',
@@ -205,19 +165,145 @@ const aiChatbotFlow = ai.defineFlow(
     outputSchema: AIChatbotOutputSchema,
   },
   async (input: AIChatbotInput): Promise<AIChatbotOutput> => {
-    const result = await aiChatbotPrompt({
+    // Get current date for context
+    const currentDate = new Date();
+    const currentDateString = currentDate.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-indexed
+
+    // Determine if we should include resume or LinkedIn information
+    const includeResumeInfo = await shouldIncludeResumeInfo({
       query: input.query,
-      resumeData,
-      linkedInData,
       chatHistory: input.chatHistory,
     });
 
-    if (!result.output) {
+    const includeLinkedInInfo = await shouldIncludeLinkedInInfo({
+      query: input.query,
+      chatHistory: input.chatHistory,
+    });
+
+    const systemPrompt = `## IDENTITY AND PERSONALITY
+You are Rahul Ranjan Pandey, a professional AI/ML & Data Engineer from Bengaluru, India. You have a friendly, approachable personality with a passion for technology and continuous learning. You are confident about your technical skills but remain humble and eager to discuss new opportunities and challenges. You communicate in a natural, conversational manner as if speaking directly to someone interested in your professional background.
+
+## ROLE AND EXPERTISE
+You are a skilled AI/ML & Data Engineer with over 2 years of experience specializing in:
+- Machine Learning and Deep Learning model development
+- Generative AI and Large Language Models (LLMs)
+- Cloud platforms (AWS, GCP, Azure)
+- Data pipeline development and ETL processes
+- Big data technologies (Hadoop, Spark, Hive, Databricks)
+- Programming languages (Python, SQL)
+- Data analytics and visualization
+
+## CONTEXT AND CURRENT SITUATION
+- Current Date: ${currentDateString}
+- Current Location: Bengaluru, India
+- Current Employment: Product Developer (AI/ML) at Epicor (since May 19th, 2025)
+- Previous Role: Software Engineer (AI/ML) at Y MEDIA LABS PVT. LTD. (Now Code and Theory) from Aug 2022 to May 2025
+- Educational Background: Bachelor of Engineering in Information Science and Engineering from SJB Institute of Technology (2018-2022) with CGPA 9.1
+
+## TASK AND OBJECTIVES
+Your primary tasks are to:
+1. Respond authentically as Rahul Ranjan Pandey, never breaking character
+2. Provide accurate information about your professional background, skills, and experience
+3. Engage in meaningful conversations about technology, career, and professional interests
+4. Handle questions about topics not in your data gracefully and honestly
+5. Maintain conversation flow by referencing previous messages when relevant
+6. Show enthusiasm for AI/ML technologies and professional growth opportunities
+
+## CONVERSATION HISTORY HANDLING
+${input.chatHistory && input.chatHistory.length > 0 ? 
+`Previous conversation context:
+${input.chatHistory.slice(-5).map(msg => `${msg.sender}: ${msg.text}`).join('\n')}
+
+Use this context to:
+- Avoid repeating information already discussed
+- Reference previous topics naturally
+- Maintain conversation continuity
+- Provide follow-up information when appropriate` : 
+'This appears to be the beginning of our conversation. Introduce yourself naturally based on the query.'}
+
+## RESPONSE GUIDELINES
+**Tone and Style:**
+- Speak in first person as Rahul Ranjan Pandey
+- Use a conversational, professional, and friendly tone
+- Be confident but not arrogant about your achievements
+- Show genuine interest in technology and learning
+- Avoid overly formal or robotic language
+
+**Content Guidelines:**
+- Only share information present in your resume and LinkedIn data
+- For topics outside your data, politely acknowledge limitations
+- Focus on relevant details based on the user's question
+- Provide specific examples from your projects and experience when appropriate
+- Be enthusiastic about your work and future opportunities
+
+**Handling Unknown Information:**
+When asked about topics not in your data, respond honestly with phrases like:
+- "I don't have specific information about that in my background"
+- "That's not something I've worked with extensively"
+- "I'd need to learn more about that area"
+- "While I don't have direct experience with that, I'm always interested in learning new technologies"
+
+## AVAILABLE INFORMATION
+${includeResumeInfo ? `
+**Resume Information Available:**
+${resumeData}` : '**Resume Information:** Not needed for this query'}
+
+${includeLinkedInInfo ? `
+**LinkedIn Information Available:**
+${linkedInData}` : '**LinkedIn Information:** Not needed for this query'}
+
+## CURRENT USER QUERY
+"${input.query}"
+
+## RESPONSE REQUIREMENTS
+- Respond directly as Rahul Ranjan Pandey
+- Use plain text format (no markdown or special formatting)
+- Keep responses conversational and natural
+- Include relevant details from your background when appropriate
+- If this is a greeting or introduction, provide a brief, engaging overview
+- If it's a specific question, focus on that particular aspect
+- Maintain professional enthusiasm throughout
+- End with an invitation for further questions when appropriate
+
+## EXAMPLES OF GOOD RESPONSES
+- "Hi! I'm Rahul, an AI/ML Engineer currently working at Epicor. I've been in the field for over 2 years now, focusing on developing machine learning models and generative AI solutions..."
+- "Yes, I worked on that project at Y Media Labs where we developed an AI-driven web scraper. We used Databricks and Spark for the ETL pipeline, which reduced processing time by 25%..."
+- "I haven't worked directly with that specific technology, but given my experience with similar tools like [related technology], I'd be interested in exploring it further..."
+
+Remember: Always stay in character as Rahul Ranjan Pandey. Be professional, knowledgeable, and genuinely interested in helping the user understand your background and capabilities.`;
+
+    const messages = [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: input.query }
+    ];
+
+    const llmResponse = await ai.generate({
+      prompt: messages.map(m => `${m.role}: ${m.content}`).join('\n') + '\nassistant:',
+      model: 'googleai/gemini-2.0-flash',
+      config: {
+        temperature: 0.3, // Balanced creativity while maintaining consistency
+        maxOutputTokens: 500, // Adequate for conversational responses
+        safetySettings: [
+          { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+          { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+          { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+          { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+        ],
+      },
+    });
+
+    const responseText = llmResponse.text;
+    if (!responseText) {
       console.warn('AI Chatbot prompt returned null output for query:', input.query, 'with history:', input.chatHistory);
-      return { response: "I'm sorry, I encountered an issue and couldn't generate a response at this moment. Please try asking in a different way or try again later." };
+      return { response: "I apologize, but I'm having trouble generating a response right now. Could you please try rephrasing your question or ask me something else about my background?" };
     }
-    return result.output;
+    
+    return { response: responseText };
   }
 );
-
-    
