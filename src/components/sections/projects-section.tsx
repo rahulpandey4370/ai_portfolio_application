@@ -9,7 +9,7 @@ import { ExternalLink } from 'lucide-react';
 const showcasedProjects = [
   {
     title: "Notora AI",
-    url: "https://notora-ai.vercel.app/showcase",
+    url: "https://notora-ai.vercel.app/showcase/dashboard",
     description: "An AI-powered and gamified application for managing to-dos, taking notes, and saving links."
   },
   {
