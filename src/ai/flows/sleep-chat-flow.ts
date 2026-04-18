@@ -6,17 +6,16 @@
  */
 
 import { ai } from '@/ai/genkit';
+import { callAzureOpenAI, shouldUseAzureOpenAI } from '@/ai/azure-openai';
 import { SleepChatInputSchema, SleepChatOutputSchema, type SleepChatInput, type SleepChatOutput } from '@/ai/schemas/sleep-chat-schemas';
+
+export type { SleepChatInput, SleepChatOutput } from '@/ai/schemas/sleep-chat-schemas';
 
 export async function chatWithSleepCoach(input: SleepChatInput): Promise<SleepChatOutput> {
   return sleepChatFlow(input);
 }
 
-const sleepChatPrompt = ai.definePrompt({
-  name: 'sleepChatPrompt',
-  input: { schema: SleepChatInputSchema },
-  output: { schema: SleepChatOutputSchema },
-  prompt: `You are an AI Sleep & Wellness Coach, continuing a conversation with a user about their sleep analysis report.
+const sleepChatPromptText = `You are an AI Sleep & Wellness Coach, continuing a conversation with a user about their sleep analysis report.
 The user has already received the following report from you:
 
 ORIGINAL SLEEP REPORT:
@@ -51,7 +50,13 @@ Your task is to answer the user's follow-up question.
 - Do not repeat the disclaimer unless specifically asked about the limitations of the advice.
 - Avoid generic greetings in follow-up responses; get straight to the point.
 Response:
-  `,
+  `;
+
+const sleepChatPrompt = ai.definePrompt({
+  name: 'sleepChatPrompt',
+  input: { schema: SleepChatInputSchema },
+  output: { schema: SleepChatOutputSchema },
+  prompt: sleepChatPromptText,
 });
 
 const sleepChatFlow = ai.defineFlow(
@@ -61,6 +66,10 @@ const sleepChatFlow = ai.defineFlow(
     outputSchema: SleepChatOutputSchema,
   },
   async (input: SleepChatInput) => {
+    if (shouldUseAzureOpenAI()) {
+      return callAzureOpenAI(sleepChatPromptText, input, SleepChatOutputSchema);
+    }
+
     const { output } = await sleepChatPrompt(input);
 
     if (!output) {

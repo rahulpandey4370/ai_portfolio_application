@@ -55,9 +55,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           <Image
             src={project.imageUrl}
             alt={project.title}
-            layout="fill"
-            objectFit="cover"
+            fill
             className="transition-opacity duration-500"
+            style={{ objectFit: 'cover' }}
             data-ai-hint={project.dataAiHint}
             unoptimized={project.imageUrl.startsWith('data:') || project.imageUrl.startsWith('blob:')}
           />
@@ -65,6 +65,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       </CardHeader>
       <CardContent className="p-6 flex-grow">
         <CardTitle className="text-xl font-semibold mb-2 text-primary">{project.title}</CardTitle>
+        {project.timeline && (
+          <p className="text-xs font-semibold uppercase tracking-wide text-accent mb-2">{project.timeline}</p>
+        )}
         <CardDescription className="text-sm text-muted-foreground mb-3 h-20 overflow-y-auto">
            {project.description}
         </CardDescription>

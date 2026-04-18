@@ -8,6 +8,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { callAzureOpenAI, shouldUseAzureOpenAI } from '@/ai/azure-openai';
 import {z} from 'genkit';
 
 const RiddleMasterOutputSchema = z.object({
@@ -20,10 +21,7 @@ export async function generateRiddle(): Promise<RiddleMasterOutput> {
   return riddleMasterFlow();
 }
 
-const riddleMasterPrompt = ai.definePrompt({
-  name: 'riddleMasterPrompt',
-  output: {schema: RiddleMasterOutputSchema},
-  prompt: `You are an exceptionally creative Riddle Master, renowned for your vast and ever-changing repertoire.
+const riddleMasterPromptText = `You are an exceptionally creative Riddle Master, renowned for your vast and ever-changing repertoire.
 Your task is to craft a COMPLETELY ORIGINAL and clever riddle that has a high likelihood of being unique and not one you have generated recently or is commonly known.
 The riddle should be 2-4 lines long and moderately challenging.
 Think about diverse topics, wordplay, and unexpected perspectives.
@@ -31,7 +29,12 @@ Provide the single, definitive, and correct answer to this unique riddle separat
 
 Ensure utmost accuracy in the answer.
 AVOID REPEATING RIDDLES. Strive for novelty and surprise with each generation.
-Imagine you have a vast internal library of potential riddles; pick one that is obscure or freshly invented.`,
+Imagine you have a vast internal library of potential riddles; pick one that is obscure or freshly invented.`;
+
+const riddleMasterPrompt = ai.definePrompt({
+  name: 'riddleMasterPrompt',
+  output: {schema: RiddleMasterOutputSchema},
+  prompt: riddleMasterPromptText,
   config: { // Add configuration to increase temperature
     temperature: 0.95, // Higher temperature for more randomness and creativity
   }
@@ -43,6 +46,10 @@ const riddleMasterFlow = ai.defineFlow(
     outputSchema: RiddleMasterOutputSchema,
   },
   async () => {
+    if (shouldUseAzureOpenAI()) {
+      return callAzureOpenAI(riddleMasterPromptText, {}, RiddleMasterOutputSchema);
+    }
+
     const {output} = await riddleMasterPrompt({});
     if (!output) {
         return { riddle: "I'm all out of riddles at the moment! Try asking again soon.", answer: "Patience" };
@@ -50,4 +57,3 @@ const riddleMasterFlow = ai.defineFlow(
     return output;
   }
 );
-

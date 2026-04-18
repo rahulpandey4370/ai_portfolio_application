@@ -7,17 +7,14 @@
  */
 
 import { ai } from '@/ai/genkit';
+import { callAzureOpenAI, shouldUseAzureOpenAI } from '@/ai/azure-openai';
 import { SleepInputSchema, SleepOutputSchema, type SleepInput, type SleepOutput } from '@/ai/schemas/sleep-scientist-schemas';
 
 export async function analyzeSleepData(input: SleepInput): Promise<SleepOutput> {
   return sleepScientistFlow(input);
 }
 
-const sleepScientistPrompt = ai.definePrompt({
-  name: 'sleepScientistPrompt',
-  input: { schema: SleepInputSchema },
-  output: { schema: SleepOutputSchema },
-  prompt: `You are an AI Sleep & Wellness Coach. Your goal is to analyze the user's sleep habits and provide actionable, personalized recommendations.
+const sleepScientistPromptText = `You are an AI Sleep & Wellness Coach. Your goal is to analyze the user's sleep habits and provide actionable, personalized recommendations.
 Please think step-by-step to generate your analysis. Consider all provided inputs for each part of your response.
 
 The user has provided the following information:
@@ -74,7 +71,13 @@ If WakeMinutes < BedMinutes, then WakeMinutes += 24*60 (add a day).
 DurationInMinutes = WakeMinutes - BedMinutes.
 Format this duration into hours and minutes for 'calculatedSleepDuration'.
 Aim for realistic and helpful advice, tailoring it deeply based on ALL provided inputs.
-`,
+`;
+
+const sleepScientistPrompt = ai.definePrompt({
+  name: 'sleepScientistPrompt',
+  input: { schema: SleepInputSchema },
+  output: { schema: SleepOutputSchema },
+  prompt: sleepScientistPromptText,
 });
 
 
@@ -86,6 +89,10 @@ const sleepScientistFlow = ai.defineFlow(
   },
   async (input: SleepInput): Promise<SleepOutput> => {
     try {
+      if (shouldUseAzureOpenAI()) {
+        return callAzureOpenAI(sleepScientistPromptText, input, SleepOutputSchema);
+      }
+
       const { output } = await sleepScientistPrompt(input);
 
       if (!output) {
@@ -132,4 +139,3 @@ const sleepScientistFlow = ai.defineFlow(
     }
   }
 );
-

@@ -29,7 +29,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative w-full min-h-[calc(100vh-3.5rem)] flex items-center justify-center overflow-hidden py-16 md:py-0">
+    <section id="hero" className="relative w-full min-h-[calc(100vh-3.5rem)] flex items-center justify-center overflow-hidden px-1 py-16 md:px-0 md:py-10 lg:py-14">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-primary/10 dark:from-background dark:via-background/80 dark:to-accent/10" />
         <div className="absolute inset-0 animate-hero-gradient-shift opacity-60 dark:opacity-40"></div>
@@ -89,7 +89,7 @@ export default function HeroSection() {
               <ul className="mt-4 sm:mt-6 space-y-2 sm:space-y-3 text-xs sm:text-sm text-foreground/80">
                 <li className="flex items-center justify-center md:justify-center gap-2"> 
                   <Award className="h-4 w-4 text-accent" />
-                  <span>3+ Years in AI/ML</span>
+                  <span>4+ Years in AI/ML</span>
                 </li>
                 <li className="flex items-center justify-center md:justify-center gap-2"> 
                   <BrainCircuit className="h-4 w-4 text-accent" />
@@ -104,22 +104,25 @@ export default function HeroSection() {
           </div>
 
           <div
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center md:justify-center gap-3 sm:gap-4 animate-fadeInUp opacity-0"
+            className="mt-10 w-full max-w-2xl px-3 sm:px-2 md:px-0 md:max-w-xl lg:max-w-2xl animate-fadeInUp opacity-0"
             style={{ animationDelay: `${portfolioData.hero.title.length * 0.03 + 0.6}s` }}
           >
-            <Button asChild size="lg" className="shadow-lg hover:shadow-primary/30 transition-shadow w-full sm:w-auto text-sm sm:text-base">
-              <Link href="/#projects">
-                {portfolioData.hero.cta}
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="shadow-lg hover:shadow-accent/30 transition-shadow w-full sm:w-auto text-sm sm:text-base">
-              <a href="/Rahul_Ranjan_Pandey_Resume_AI_Portfolio.pdf" download="Rahul_Ranjan_Pandey_Resume_AI_Portfolio.pdf">
-                Download CV
-                <Download className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-              </a>
-            </Button>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Button asChild size="lg" className="group h-14 w-full rounded-2xl bg-gradient-to-r from-primary via-primary to-primary/90 px-6 text-sm sm:text-base shadow-[0_18px_45px_-22px_hsl(var(--primary)/0.9)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_-22px_hsl(var(--primary)/0.95)]">
+                <Link href="/#projects">
+                  {portfolioData.hero.cta}
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="group h-14 w-full rounded-2xl border-white/50 bg-white/75 px-6 text-sm text-foreground shadow-[0_18px_45px_-28px_rgba(15,23,42,0.45)] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-primary/25 hover:bg-white/90 hover:shadow-[0_24px_55px_-26px_hsl(var(--primary)/0.35)] dark:border-white/10 dark:bg-white/5 dark:text-foreground dark:hover:bg-white/10 sm:text-base">
+                <a href="/Rahul_Ranjan_Pandey_Resume_AI_ML_Data.pdf" download="Rahul_Ranjan_Pandey_Resume_AI_ML_Data.pdf">
+                  Download CV
+                  <Download className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 sm:h-5 sm:w-5" />
+                </a>
+              </Button>
+            </div>
           </div>
+
         </div>
 
         {/* Right Column: Chat Interface */}

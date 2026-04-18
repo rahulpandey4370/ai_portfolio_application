@@ -9,6 +9,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Send, User, MessageSquare, Loader2, Sparkles } from 'lucide-react'; // Added Sparkles
 import { aiChatbot, type AIChatbotInput, type ChatMessage as BackendChatMessage } from '@/ai/flows/ai-chatbot';
 import { cn } from '@/lib/utils';
+import MarkdownMessage from '@/components/ui/markdown-message';
 
 interface Message {
   id: string;
@@ -118,7 +119,7 @@ export default function ChatInterface() {
                     : 'bg-secondary text-secondary-foreground'
                 )}
               >
-                {msg.text}
+                {msg.sender === 'bot' ? <MarkdownMessage content={msg.text} /> : msg.text}
               </div>
               {msg.sender === 'user' && (
                 <Avatar className="h-8 w-8">

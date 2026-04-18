@@ -9,6 +9,7 @@
  */
 
 import {ai} from '@/ai/genkit';
+import { callAzureOpenAI, shouldUseAzureOpenAI } from '@/ai/azure-openai';
 import {z} from 'genkit';
 
 const SummarizeProjectInputSchema = z.object({
@@ -29,11 +30,13 @@ export async function summarizeProject(input: SummarizeProjectInput): Promise<Su
   return summarizeProjectFlow(input);
 }
 
+const summarizeProjectPromptText = `Summarize the following project description in one line:\n\n{{projectDescription}}`;
+
 const prompt = ai.definePrompt({
   name: 'summarizeProjectPrompt',
   input: {schema: SummarizeProjectInputSchema},
   output: {schema: SummarizeProjectOutputSchema},
-  prompt: `Summarize the following project description in one line:\n\n{{projectDescription}}`,
+  prompt: summarizeProjectPromptText,
 });
 
 const summarizeProjectFlow = ai.defineFlow(
@@ -43,6 +46,10 @@ const summarizeProjectFlow = ai.defineFlow(
     outputSchema: SummarizeProjectOutputSchema,
   },
   async input => {
+    if (shouldUseAzureOpenAI()) {
+      return callAzureOpenAI(summarizeProjectPromptText, input, SummarizeProjectOutputSchema);
+    }
+
     const {output} = await prompt(input);
     return output!;
   }

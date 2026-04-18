@@ -21,6 +21,7 @@ import { type SleepChatMessage } from '@/ai/schemas/sleep-chat-schemas';
 import { Separator } from '../ui/separator';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import MarkdownMessage from '@/components/ui/markdown-message';
 
 const ageRanges = ["18-25", "26-40", "41-60", "60+"];
 const chronotypes = ["Morning Person", "Night Owl", "Flexible/Neither"];
@@ -432,7 +433,7 @@ export default function SleepScientist() {
                               : 'bg-secondary text-secondary-foreground'
                           )}
                         >
-                          {msg.text}
+                          {msg.sender === 'bot' ? <MarkdownMessage content={msg.text} /> : msg.text}
                         </div>
                         {msg.sender === 'user' && (
                           <Avatar className="h-8 w-8">
