@@ -2,9 +2,11 @@ import { AzureOpenAI } from 'openai';
 import type { ChatCompletionMessageParam } from 'openai/resources/chat/completions';
 import { z, type ZodSchema } from 'zod';
 
-const endpoint = process.env.AZURE_OPENAI_ENDPOINT;
+const rawEndpoint = process.env.AZURE_OPENAI_ENDPOINT;
+// Strip any path — the SDK expects only the base URL (origin)
+const endpoint = rawEndpoint ? new URL(rawEndpoint).origin : undefined;
 const apiKey = process.env.AZURE_OPENAI_API_KEY;
-const apiVersion = '2024-02-01';
+const apiVersion = '2025-01-01-preview';
 const deployment = process.env.AZURE_OPENAI_DEPLOYMENT_NAME;
 
 let client: AzureOpenAI | null = null;
